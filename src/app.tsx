@@ -1,5 +1,5 @@
-import {MainPage} from './pages/mainPage.tsx';
+import {AppRouter} from './routes/appRouter.tsx';
 
 export function App() {
-  return <MainPage/>;
+  return <AppRouter/>;
 }
