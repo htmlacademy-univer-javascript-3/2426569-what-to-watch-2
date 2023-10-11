@@ -1,4 +1,4 @@
-export const Player = () => (
+export const PlayerPage = () => (
   <div className="player">
     <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
 
