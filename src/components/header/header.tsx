@@ -1,14 +1,21 @@
-export function Header() {
-  return (
-    <header className="page-header film-card__head">
-      <div className="logo">
-        <a className="logo__link">
-          <span className="logo__letter logo__letter--1">W</span>
-          <span className="logo__letter logo__letter--2">T</span>
-          <span className="logo__letter logo__letter--3">W</span>
-        </a>
-      </div>
+import {ROUTES_LINKS} from '../../routes/consts.ts';
+import {Link} from 'react-router-dom';
+import React from 'react';
+import {Logo} from './logo.tsx';
 
+
+type Props = {
+  breadcrumbs?: React.JSX.Element;
+  pageTitle?: React.JSX.Element;
+  classNames?: string;
+}
+
+export function Header({breadcrumbs, classNames, pageTitle}: Props) {
+  return (
+    <header className={`page-header ${classNames ?? ''}`}>
+      <Logo/>
+      {pageTitle}
+      {breadcrumbs}
       <ul className="user-block">
         <li className="user-block__item">
           <div className="user-block__avatar">
@@ -16,7 +23,7 @@ export function Header() {
           </div>
         </li>
         <li className="user-block__item">
-          <a className="user-block__link">Sign out</a>
+          <Link to={ROUTES_LINKS.SING_IN} className="user-block__link">Sign out</Link>
         </li>
       </ul>
     </header>

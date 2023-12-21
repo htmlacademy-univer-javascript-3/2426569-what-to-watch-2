@@ -1,4 +1,4 @@
-import {GenreProps} from '../../../data/genreData.ts';
+import {GenreProps} from '../../../mocs/genres.ts';
 
 type GenreItemProps = {
   genre: GenreProps;
