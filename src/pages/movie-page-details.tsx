@@ -1,4 +1,6 @@
 import {Fragment} from 'react';
+import {Footer} from '../components/footer/footer.tsx';
+import {Header} from '../components/header/header.tsx';
 
 export const MoviePageDetails = () => (
   <Fragment>
@@ -10,26 +12,7 @@ export const MoviePageDetails = () => (
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header film-card__head">
-          <div className="logo">
-            <a href="main.html" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a className="user-block__link">Sign out</a>
-            </li>
-          </ul>
-        </header>
+        <Header/>
 
         <div className="film-card__wrap">
           <div className="film-card__desc">
@@ -63,7 +46,7 @@ export const MoviePageDetails = () => (
         <div className="film-card__info">
           <div className="film-card__poster film-card__poster--big">
             <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
-              height="327"
+                 height="327"
             />
           </div>
 
@@ -135,7 +118,7 @@ export const MoviePageDetails = () => (
           <article className="small-film-card catalog__films-card">
             <div className="small-film-card__image">
               <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-                alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"
+                   alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"
               />
             </div>
             <h3 className="small-film-card__title">
@@ -171,20 +154,7 @@ export const MoviePageDetails = () => (
           </article>
         </div>
       </section>
-
-      <footer className="page-footer">
-        <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-
-        <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   </Fragment>
 );

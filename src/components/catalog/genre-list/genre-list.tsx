@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {GENRE_LIST} from '../../../data/genreData.ts';
-import {GenreItem} from './genreItem.tsx';
+import {GENRE_LIST} from '../../../mocs/genres.ts';
+import {GenreItem} from './genre-item.tsx';
 
 export const GenreList: React.FC = () => (
   <ul className="catalog__genres-list">

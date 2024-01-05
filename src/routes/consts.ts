@@ -4,7 +4,7 @@ export const enum ROUTES_LINKS {
   MY_LIST = '/mylist',
   FILMS = '/films',
   FILM = '/films/:id',
-  REVIEW = '/films/:id/review',
+  ADD_REVIEW = '/films/:id/review',
   PLAYER = '/player/:id',
   NOT_FOUND = '*',
 }
