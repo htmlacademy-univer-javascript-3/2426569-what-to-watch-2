@@ -1,5 +1,5 @@
 import {Navigate} from 'react-router-dom';
-import {ROUTES_LINKS} from './consts.ts';
+import {ROUTES_LINKS} from './route-links.ts';
 import React from 'react';
 
 type PrivateRouteProps = {

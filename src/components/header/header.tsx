@@ -1,4 +1,4 @@
-import {ROUTES_LINKS} from '../../routes/consts.ts';
+import {ROUTES_LINKS} from '../../routes/route-links.ts';
 import {Link} from 'react-router-dom';
 import React from 'react';
 import {Logo} from './logo.tsx';

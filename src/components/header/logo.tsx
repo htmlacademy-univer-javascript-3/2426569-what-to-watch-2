@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import {ROUTES_LINKS} from '../../routes/consts.ts';
+import {ROUTES_LINKS} from '../../routes/route-links.ts';
 
 export function Logo() {
   return (

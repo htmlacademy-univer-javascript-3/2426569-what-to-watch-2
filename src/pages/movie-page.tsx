@@ -2,28 +2,29 @@ import {Fragment} from 'react';
 import {Footer} from '../components/footer/footer.tsx';
 import {Header} from '../components/header/header.tsx';
 import {Navigate, useParams} from 'react-router-dom';
-import {ROUTES_LINKS} from '../routes/consts.ts';
+import {ROUTES_LINKS} from '../routes/route-links.ts';
 import {FilmCardLinkButton} from '../components/film-card-buttons/film-card-link-button.tsx';
 import {Icon} from '../components/icon/icon.tsx';
 import {ICONS} from '../components/icon/icons.ts';
-import {FilmInfo} from '../types/filmInfo.ts';
 import {FilmDescription} from '../components/film-descrtipion/film-description.tsx';
 import REVIEW_LIST from '../mocs/review.ts';
 import {FilmList} from '../components/catalog/film-list/film-list.tsx';
-
-type Props = {
-  filmsData: FilmInfo[];
-}
+import {useSelector} from 'react-redux';
+import {selectFilms} from '../store/reducer.ts';
 
 const COUNT_FAVORITE = 9;
 
-export const MoviePage = ({filmsData}: Props) => {
+export const MoviePage = () => {
   const {id} = useParams();
-  const film = filmsData.find((item) => item.id === id);
+  const films = useSelector(selectFilms);
+  const film = films.find((item) => item.id === id);
 
   if (!film) {
     return (<Navigate to={ROUTES_LINKS.NOT_FOUND}/>);
   }
+
+  const genre = film.genre;
+  const filteredFilms = films.filter((f) => f.genre === genre);
 
   return (
 
@@ -82,12 +83,15 @@ export const MoviePage = ({filmsData}: Props) => {
       </section>
 
       <div className="page-content">
-        <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
+        {
+          filteredFilms.length && (
+            <section className="catalog catalog--like-this">
+              <h2 className="catalog__title">More like this</h2>
 
-          <FilmList filmsData={filmsData} maxLength={4}/>
-        </section>
-
+              <FilmList filmsData={filteredFilms} maxLength={4}/>
+            </section>
+          )
+        }
         <Footer/>
       </div>
     </Fragment>

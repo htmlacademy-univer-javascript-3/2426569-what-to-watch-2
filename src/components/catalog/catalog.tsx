@@ -1,12 +1,11 @@
 import {GenreList} from './genre-list/genre-list.tsx';
 import {FilmList} from './film-list/film-list.tsx';
-
 import {FilmInfo} from '../../types/filmInfo.ts';
 
 interface Props {
-  filmsData: FilmInfo[];
   withoutGenres?: boolean;
   withoutShowMore?: boolean;
+  films: FilmInfo[];
 }
 
 function ShowMoreButton() {
@@ -17,13 +16,13 @@ function ShowMoreButton() {
   );
 }
 
-export const Catalog = ({filmsData, withoutGenres = false, withoutShowMore = false}: Props) => (
+export const Catalog = ({withoutGenres = false, withoutShowMore = false, films}: Props) => (
   <section className="catalog">
     <h2 className="catalog__title visually-hidden">Catalog</h2>
 
     {!withoutGenres ? <GenreList/> : null}
 
-    <FilmList filmsData={filmsData}/>
+    <FilmList filmsData={films}/>
 
     {!withoutShowMore ? <ShowMoreButton/> : null}
 
