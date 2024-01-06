@@ -1,20 +1,4 @@
-export type FilmInfo = {
-  id: string;
-  name: string;
-  genre: string;
-  released: number;
-  backgroundImage: string;
-  backgroundColor: string;
-  posterImage: string;
-  rating: number;
-  runTime: number;
-  scoresCount: number;
-  videoLink: string;
-  isFavorite: boolean;
-  starring: string[];
-  description: string;
-  director: string;
-}
+import {FilmInfo} from '../types/filmInfo.ts';
 
 export const FILM_LIST: FilmInfo[] = [
   {

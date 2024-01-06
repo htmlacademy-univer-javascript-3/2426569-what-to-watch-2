@@ -1,12 +1,13 @@
-import {FilmInfo} from '../../../mocs/filmInfo.ts';
 import {SmallFilmCard} from './small-film-card.tsx';
 import {useState} from 'react';
+import {FilmInfo} from '../../../types/filmInfo.ts';
 
 type Props = {
   filmsData: FilmInfo[];
+  maxLength?: number;
 }
 
-export const FilmList = ({filmsData}: Props) => {
+export const FilmList = ({filmsData, maxLength = filmsData.length}: Props) => {
   const [activeFilm, setActiveFilm] = useState<string | null>(null);
   const handleCardHover = (filmId: string) => {
     setActiveFilm(filmId);
@@ -18,7 +19,7 @@ export const FilmList = ({filmsData}: Props) => {
 
   return (
     <div className="catalog__films-list">
-      {filmsData.slice(0, filmsData.length).map((film) => (
+      {filmsData.slice(0, maxLength).map((film) => (
         <SmallFilmCard
           film={film}
           key={film.id}

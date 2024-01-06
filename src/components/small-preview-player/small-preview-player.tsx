@@ -1,5 +1,5 @@
-import {FilmInfo} from '../../mocs/filmInfo.ts';
 import {useEffect, useRef, useState} from 'react';
+import {FilmInfo} from '../../types/filmInfo.ts';
 
 type Props = FilmInfo & { isMuted?: boolean; width: string; height: string };
 
@@ -14,7 +14,7 @@ export const SmallPreviewPlayer: React.FC<Props> = ({
   height
 }: Props) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [timeout, setModalTimeout] = useState<NodeJS.Timeout>();
+  const [timeout, setModalTimeout] = useState<ReturnType<typeof setTimeout>>();
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   const handleMouseEnter = () => {

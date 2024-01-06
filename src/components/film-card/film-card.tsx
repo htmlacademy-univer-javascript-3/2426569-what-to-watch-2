@@ -1,10 +1,10 @@
 import {Header} from '../header/header.tsx';
-import {FilmInfo} from '../../mocs/filmInfo.ts';
 
 import {ROUTES_LINKS} from '../../routes/consts.ts';
 import {ICONS} from '../icon/icons.ts';
 import {FilmCardLinkButton} from '../film-card-buttons/film-card-link-button.tsx';
 import {Icon} from '../icon/icon.tsx';
+import {FilmInfo} from '../../types/filmInfo.ts';
 
 interface FilmCardProps {
   film: FilmInfo;

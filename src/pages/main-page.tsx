@@ -2,7 +2,8 @@ import * as React from 'react';
 import {Footer} from '../components/footer/footer.tsx';
 import {Catalog} from '../components/catalog/catalog.tsx';
 import {FilmCard} from '../components/film-card/film-card.tsx';
-import {FilmInfo} from '../mocs/filmInfo.ts';
+
+import {FilmInfo} from '../types/filmInfo.ts';
 
 type Props = {
   filmsData: FilmInfo[];

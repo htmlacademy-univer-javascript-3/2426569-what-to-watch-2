@@ -1,8 +1,10 @@
-import {FilmInfo} from '../../mocs/filmInfo.ts';
 import React, {useEffect, useRef, useState} from 'react';
+
+import {useNavigate} from 'react-router-dom';
 import {Icon} from '../icon/icon.tsx';
 import {ICONS} from '../icon/icons.ts';
 import {formatDuration} from '../../utils/timeFormat.ts';
+import {FilmInfo} from '../../types/filmInfo.ts';
 
 interface PlayerProps {
   film: FilmInfo;
@@ -15,6 +17,8 @@ function PlayerComponent({film: {posterImage, videoLink, name, runTime}}: Player
   const [isMuted, setIsMuted] = useState<boolean>(false);
   const [lastTime, setLastTime] = useState(0);
   const [progress, setProgress] = useState(0);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     if (videoRef.current && videoRef.current?.paused !== !isPlaying) {
@@ -46,6 +50,10 @@ function PlayerComponent({film: {posterImage, videoLink, name, runTime}}: Player
     }
   };
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
     <div className="player">
       <video
@@ -59,7 +67,7 @@ function PlayerComponent({film: {posterImage, videoLink, name, runTime}}: Player
         <source src={videoLink} type="video/mp4"/>
       </video>
 
-      <button type="button" className="player__exit">Exit</button>
+      <button type="button" className="player__exit" onClick={handleGoBack}>Exit</button>
 
       <div className="player__controls">
         <div className="player__controls-row">
@@ -79,7 +87,8 @@ function PlayerComponent({film: {posterImage, videoLink, name, runTime}}: Player
           </button>
           <button type="button" className="player__play" onClick={handleMuteClick}>
             {
-              isMuted ? <><Icon {...ICONS.MUTE}/><span>Mute</span></> : <><Icon {...ICONS.UNMUTE}/><span>Unmute</span></>
+              isMuted ? <><Icon {...ICONS.MUTE}/><span>Mute</span></>
+                : <><Icon {...ICONS.UNMUTE}/><span>Unmute</span></>
             }
           </button>
           <div className="player__name">{name}</div>

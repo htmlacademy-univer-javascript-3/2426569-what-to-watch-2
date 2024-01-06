@@ -1,7 +1,7 @@
-import {GenreProps} from '../../../mocs/genres.ts';
+import {Genre} from '../../../types/genre.ts';
 
 type GenreItemProps = {
-  genre: GenreProps;
+  genre: Genre;
 };
 export const GenreItem = ({genre: {isActive, name}}: GenreItemProps) => (
   <li className={`catalog__genres-item ${isActive ? 'catalog__genres-item--active' : ''}`}>
