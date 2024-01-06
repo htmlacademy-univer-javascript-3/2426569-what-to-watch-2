@@ -1,15 +1,13 @@
 import {Navigate, useParams} from 'react-router-dom';
-import {ROUTES_LINKS} from '../routes/consts.ts';
+import {ROUTES_LINKS} from '../routes/route-links.ts';
 import {Player} from '../components/player/player.tsx';
-import {FilmInfo} from '../types/filmInfo.ts';
+import {selectFilms} from '../store/reducer.ts';
+import {useSelector} from 'react-redux';
 
-type Props = {
-  filmsData: FilmInfo[];
-}
-
-export const PlayerPage = ({filmsData}: Props) => {
+export const PlayerPage = () => {
   const {id} = useParams();
-  const film = filmsData.find((item) => item.id === id);
+  const films = useSelector(selectFilms);
+  const film = films.find((item) => item.id === id);
 
   if (!film) {
     return (<Navigate to={ROUTES_LINKS.NOT_FOUND}/>);

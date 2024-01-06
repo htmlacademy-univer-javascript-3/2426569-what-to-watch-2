@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {App} from './app.tsx';
-import {FILM_LIST} from './mocs/filmInfo.ts';
+import {Provider} from 'react-redux';
+import {store} from './store/store.ts';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -9,6 +10,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App filmsData={FILM_LIST} isAuth />
+    <Provider store={store}>
+      <App isAuth />
+    </Provider>
   </React.StrictMode>
 );

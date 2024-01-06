@@ -1,3 +1,4 @@
+
 export const convertFilmRating = (rating = 0) => {
   if (rating >= 10) {
     return 'Awesome';

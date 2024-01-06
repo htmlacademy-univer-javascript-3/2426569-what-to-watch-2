@@ -2,20 +2,21 @@ import * as React from 'react';
 import {Footer} from '../components/footer/footer.tsx';
 import {Catalog} from '../components/catalog/catalog.tsx';
 import {FilmCard} from '../components/film-card/film-card.tsx';
+import {selectFilms, selectFilteredByGenreFilms} from '../store/reducer.ts';
+import {useSelector} from 'react-redux';
 
-import {FilmInfo} from '../types/filmInfo.ts';
+export const MainPage = () => {
+  const films = useSelector(selectFilms);
+  const filteredFilms = useSelector(selectFilteredByGenreFilms);
 
-type Props = {
-  filmsData: FilmInfo[];
+  return (
+    <React.Fragment>
+      <FilmCard film={films[0]}/>
+
+      <div className="page-content">
+        <Catalog films={filteredFilms}/>
+        <Footer/>
+      </div>
+    </React.Fragment>
+  );
 };
-
-export const MainPage = ({filmsData}: Props) => (
-  <React.Fragment>
-    <FilmCard film={filmsData[0]}/>
-
-    <div className="page-content">
-      <Catalog filmsData={filmsData}/>
-      <Footer/>
-    </div>
-  </React.Fragment>
-);
