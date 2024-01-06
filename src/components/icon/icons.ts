@@ -5,4 +5,6 @@ export const ICONS = Object.freeze({
   FULL_SCREEN: {width: '27', height: '27', xlinkHref: '#full-screen'},
   IN_LIST: {width: '18', height: '14', xlinkHref: '#in-list'},
   PAUSE: {width: '14', height: '21', xlinkHref: '#pause'},
+  MUTE: {width: '36', height: '36', xlinkHref: '#mute'},
+  UNMUTE: {width: '36', height: '36', xlinkHref: '#unmute'},
 });

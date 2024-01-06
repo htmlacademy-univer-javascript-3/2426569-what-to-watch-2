@@ -2,6 +2,7 @@ import {FilmInfo} from '../../../mocs/filmInfo.ts';
 import {Link} from 'react-router-dom';
 import {ROUTES_LINKS} from '../../../routes/consts.ts';
 import {useCallback} from 'react';
+import {SmallPreviewPlayer} from '../../small-preview-player/small-preview-player.tsx';
 
 interface SmallFilmCardProps {
   film: FilmInfo;
@@ -14,7 +15,7 @@ const CARD_WIDTH = '280';
 const CARD_HEIGHT = '175';
 
 export function SmallFilmCard({film, isActive, onMouseEnter, onMouseLeave}: SmallFilmCardProps) {
-  const {backgroundImage, name, id} = film;
+  const {name, id} = film;
 
   const handleMouseEnter = useCallback(() => {
     onMouseEnter(id);
@@ -27,9 +28,7 @@ export function SmallFilmCard({film, isActive, onMouseEnter, onMouseLeave}: Smal
       onMouseLeave={onMouseLeave}
       data-active={isActive}
     >
-      <div className="small-film-card__image">
-        <img src={backgroundImage} alt={name} width={CARD_WIDTH} height={CARD_HEIGHT}/>
-      </div>
+      <SmallPreviewPlayer {...film} width={CARD_WIDTH} height={CARD_HEIGHT}/>
       <h3 className="small-film-card__title">
         <Link className="small-film-card__link" to={ROUTES_LINKS.FILM.replace(':id', id)}>{name}</Link>
       </h3>

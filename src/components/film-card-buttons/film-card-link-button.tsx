@@ -1,15 +1,14 @@
-import React, {memo, useCallback} from 'react';
+import React, {memo, PropsWithChildren, useCallback} from 'react';
 import {useNavigate} from 'react-router-dom';
 
 interface FilmCardButtonProps {
-  children?: React.JSX.Element;
   icon?: React.JSX.Element;
   toLink: string;
   classNames?: string;
   title: string;
 }
 
-function FilmCardLinkButtonComponent({children, toLink, icon, title, classNames}: FilmCardButtonProps) {
+function FilmCardLinkButtonComponent({children, toLink, icon, title, classNames}: PropsWithChildren<FilmCardButtonProps>) {
   const navigate = useNavigate();
 
   const handleClick = useCallback(() => {
