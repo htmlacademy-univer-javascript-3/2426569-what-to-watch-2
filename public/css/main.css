@@ -1320,6 +1320,7 @@ main {
 .small-film-card__image {
   position: relative;
   z-index: 1;
+  object-fit: inherit;
   height: 175px; }
   .small-film-card__image::after {
     content: '';

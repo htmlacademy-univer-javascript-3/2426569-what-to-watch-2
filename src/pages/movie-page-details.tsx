@@ -45,8 +45,11 @@ export const MoviePageDetails = () => (
       <div className="film-card__wrap film-card__translate-top">
         <div className="film-card__info">
           <div className="film-card__poster film-card__poster--big">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
-                 height="327"
+            <img
+              src="img/the-grand-budapest-hotel-poster.jpg"
+              alt="The Grand Budapest Hotel poster"
+              width="218"
+              height="327"
             />
           </div>
 
@@ -117,8 +120,11 @@ export const MoviePageDetails = () => (
         <div className="catalog__films-list">
           <article className="small-film-card catalog__films-card">
             <div className="small-film-card__image">
-              <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-                   alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175"
+              <img
+                src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+                alt="Fantastic Beasts: The Crimes of Grindelwald"
+                width="280"
+                height="175"
               />
             </div>
             <h3 className="small-film-card__title">

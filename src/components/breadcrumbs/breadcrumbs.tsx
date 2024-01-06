@@ -21,4 +21,4 @@ export function Breadcrumbs({id, title} : BreadcrumbsProps) {
       </ul>
     </nav>
   );
-};
+}
