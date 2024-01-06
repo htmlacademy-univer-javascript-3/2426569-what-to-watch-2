@@ -7,7 +7,7 @@ const FILM_PREVIEW_MS = 1000;
 
 export const SmallPreviewPlayer: React.FC<Props> = ({
   videoLink,
-  posterImage,
+  backgroundImage,
   name,
   isMuted = true,
   width,
@@ -56,7 +56,7 @@ export const SmallPreviewPlayer: React.FC<Props> = ({
         <video
           ref={videoRef}
           src={videoLink}
-          poster={posterImage}
+          poster={backgroundImage}
           muted={isMuted}
           width={width}
           height={height}
@@ -64,7 +64,7 @@ export const SmallPreviewPlayer: React.FC<Props> = ({
         />
       ) : (
         <img
-          src={posterImage}
+          src={backgroundImage}
           alt={name}
           width={width}
           height={height}

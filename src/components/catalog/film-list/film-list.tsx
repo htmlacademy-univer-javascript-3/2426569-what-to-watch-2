@@ -19,7 +19,7 @@ export const FilmList = ({filmsData, maxLength = filmsData.length}: Props) => {
 
   return (
     <div className="catalog__films-list">
-      {!filmsData.length && <span>Films not found</span>}
+      {filmsData.length === 0 && <span>Films not found</span>}
       {filmsData.slice(0, maxLength).map((film) => (
         <SmallFilmCard
           film={film}

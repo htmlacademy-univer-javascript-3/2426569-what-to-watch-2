@@ -24,7 +24,7 @@ export const MoviePage = () => {
   }
 
   const genre = film.genre;
-  const filteredFilms = films.filter((f) => f.genre === genre);
+  const filteredFilms = films.filter((f) => f.genre === genre && f.id !== id);
 
   return (
 
@@ -84,7 +84,7 @@ export const MoviePage = () => {
 
       <div className="page-content">
         {
-          filteredFilms.length && (
+          filteredFilms.length > 0 && (
             <section className="catalog catalog--like-this">
               <h2 className="catalog__title">More like this</h2>
 

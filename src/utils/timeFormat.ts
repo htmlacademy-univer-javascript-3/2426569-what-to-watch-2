@@ -1,6 +1,4 @@
-
-const SECONDS_IN_HOUR = 3600;
-const SECONDS_IN_MINUTE = 60;
+import {SECONDS_IN_HOUR, SECONDS_IN_MINUTE} from '../consts.ts';
 
 export const formatDuration = (timeInSeconds: number): string => {
   const hours = Math.floor(timeInSeconds / SECONDS_IN_HOUR);
