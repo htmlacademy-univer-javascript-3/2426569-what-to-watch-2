@@ -1,4 +1,6 @@
-export const GENRE_LIST: GenreProps[] = [
+import {Genre} from '../types/genre.ts';
+
+export const GENRE_LIST: Genre[] = [
   { id: 1, isActive: true, name: 'All genres' },
   { id: 2, isActive: false, name: 'Comedies' },
   { id: 3, isActive: false, name: 'Crime' },
@@ -11,8 +13,3 @@ export const GENRE_LIST: GenreProps[] = [
   { id: 10, isActive: false, name: 'Thrillers' },
 ];
 
-export type GenreProps = {
-  id: number;
-  isActive: boolean;
-  name: string;
-}

@@ -1,7 +1,7 @@
-import {FilmInfo} from '../mocs/filmInfo.ts';
 import {Navigate, useParams} from 'react-router-dom';
 import {ROUTES_LINKS} from '../routes/consts.ts';
 import {Player} from '../components/player/player.tsx';
+import {FilmInfo} from '../types/filmInfo.ts';
 
 type Props = {
   filmsData: FilmInfo[];

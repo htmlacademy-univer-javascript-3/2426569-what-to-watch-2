@@ -1,8 +1,8 @@
-import {FilmInfo} from '../../../mocs/filmInfo.ts';
 import {Link} from 'react-router-dom';
 import {ROUTES_LINKS} from '../../../routes/consts.ts';
 import {useCallback} from 'react';
 import {SmallPreviewPlayer} from '../../small-preview-player/small-preview-player.tsx';
+import {FilmInfo} from '../../../types/filmInfo.ts';
 
 interface SmallFilmCardProps {
   film: FilmInfo;

@@ -1,6 +1,7 @@
 import {GenreList} from './genre-list/genre-list.tsx';
 import {FilmList} from './film-list/film-list.tsx';
-import {FilmInfo} from '../../mocs/filmInfo.ts';
+
+import {FilmInfo} from '../../types/filmInfo.ts';
 
 interface Props {
   filmsData: FilmInfo[];

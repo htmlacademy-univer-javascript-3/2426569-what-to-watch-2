@@ -8,7 +8,9 @@ import {MoviePage} from './pages/movie-page.tsx';
 import {AddReviewPage} from './pages/add-review.tsx';
 import {PlayerPage} from './pages/player-page.tsx';
 import {NotFoundPage} from './pages/not-found-page.tsx';
-import {FilmInfo} from './mocs/filmInfo.ts';
+
+import {FilmInfo} from './types/filmInfo.ts';
+import ScrollToTop from './components/scroll-to-top/ScrollToTop.tsx';
 
 type Props = {
   isAuth: boolean;
@@ -18,6 +20,7 @@ type Props = {
 export function App({filmsData, isAuth}: Props) {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path={ROUTES_LINKS.MAIN} element={<MainPage filmsData={filmsData}/>}/>
         <Route path={ROUTES_LINKS.SING_IN} element={<SignIn/>}/>

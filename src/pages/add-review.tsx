@@ -1,9 +1,9 @@
 import {Breadcrumbs} from '../components/breadcrumbs/breadcrumbs.tsx';
 import {Header} from '../components/header/header.tsx';
-import {FilmInfo} from '../mocs/filmInfo.ts';
 import {Navigate, useParams} from 'react-router-dom';
 import {ReviewForm} from '../components/review-form/review-form.tsx';
 import {ROUTES_LINKS} from '../routes/consts.ts';
+import {FilmInfo} from '../types/filmInfo.ts';
 
 type AddReviewProps = {
   filmsData: FilmInfo[];

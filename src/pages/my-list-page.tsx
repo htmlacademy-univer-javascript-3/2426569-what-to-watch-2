@@ -1,7 +1,7 @@
 import {Footer} from '../components/footer/footer.tsx';
 import {Header} from '../components/header/header.tsx';
-import {FilmInfo} from '../mocs/filmInfo.ts';
 import {Catalog} from '../components/catalog/catalog.tsx';
+import {FilmInfo} from '../types/filmInfo.ts';
 
 interface Props {
   filmsData: FilmInfo[];
