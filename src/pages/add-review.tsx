@@ -3,13 +3,12 @@ import {Header} from '../components/header/header.tsx';
 import {Navigate, useParams} from 'react-router-dom';
 import {ReviewForm} from '../components/review-form/review-form.tsx';
 import {ROUTES_LINKS} from '../routes/route-links.ts';
-import {selectFilms} from '../store/reducer.ts';
+import {selectFilmById} from '../store/reducer.ts';
 import {useSelector} from 'react-redux';
 
 export const AddReviewPage = function () {
   const {id} = useParams();
-  const films = useSelector(selectFilms);
-  const film = films.find((item) => item.id === id);
+  const film = useSelector(selectFilmById(id));
 
   if (!film) {
     return (<Navigate to={ROUTES_LINKS.NOT_FOUND}/>);

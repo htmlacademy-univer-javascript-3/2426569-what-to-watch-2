@@ -15,6 +15,7 @@ type Props = {
   isAuth: boolean;
 };
 
+
 export function App({isAuth}: Props) {
   return (
     <BrowserRouter>

@@ -1,6 +1,5 @@
-import {FilmInfo} from '../types/filmInfo.ts';
-
-export const FILM_LIST: FilmInfo[] = [
+import {FilmDetailsInfo} from '../types/filmDetailsInfo.ts';
+export const FILM_LIST: FilmDetailsInfo[] = [
   {
     id: 'd1033708-4b29-4f5e-9572-f4f1b90389de',
     name: 'Fantastic Beasts: The Crimes of Grindelwald',

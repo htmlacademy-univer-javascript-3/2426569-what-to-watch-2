@@ -2,10 +2,11 @@ import {Footer} from '../components/footer/footer.tsx';
 import {Header} from '../components/header/header.tsx';
 import {Catalog} from '../components/catalog/catalog.tsx';
 import {useSelector} from 'react-redux';
-import {selectMyFilms} from '../store/reducer.ts';
+import {selectIsFilmsLoading, selectMyFilms} from '../store/reducer.ts';
 
 export const MyListPage = () => {
   const films = useSelector(selectMyFilms);
+  const isLoading = useSelector(selectIsFilmsLoading);
 
   return (
     <div className="user-page">
@@ -16,7 +17,7 @@ export const MyListPage = () => {
         }
       />
 
-      <Catalog films={films} withoutGenres withoutShowMore/>
+      <Catalog films={films} withoutGenres withoutShowMore isLoading={isLoading}/>
       <Footer/>
     </div>
   );

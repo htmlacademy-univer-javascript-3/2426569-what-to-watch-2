@@ -6,8 +6,8 @@ type Props = FilmInfo & { isMuted?: boolean; width: string; height: string };
 const FILM_PREVIEW_MS = 1000;
 
 export const SmallPreviewPlayer: React.FC<Props> = ({
-  videoLink,
-  backgroundImage,
+  previewVideoLink,
+  previewImage,
   name,
   isMuted = true,
   width,
@@ -55,8 +55,8 @@ export const SmallPreviewPlayer: React.FC<Props> = ({
       {isPlaying ? (
         <video
           ref={videoRef}
-          src={videoLink}
-          poster={backgroundImage}
+          src={previewVideoLink}
+          poster={previewImage}
           muted={isMuted}
           width={width}
           height={height}
@@ -64,7 +64,7 @@ export const SmallPreviewPlayer: React.FC<Props> = ({
         />
       ) : (
         <img
-          src={backgroundImage}
+          src={previewImage}
           alt={name}
           width={width}
           height={height}
