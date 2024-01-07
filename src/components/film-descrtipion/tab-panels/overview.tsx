@@ -1,9 +1,9 @@
 import { FC, memo } from 'react';
 import {convertFilmRating} from '../../../utils/raiting.ts';
-import {FilmInfo} from '../../../types/filmInfo.ts';
+import {FilmDetailsInfo} from '../../../types/filmDetailsInfo.ts';
 
 interface OverviewProps {
-  film: FilmInfo;
+  film: FilmDetailsInfo;
 }
 
 const OverviewComponent: FC<OverviewProps> = ({ film }) => {

@@ -3,13 +3,13 @@ import {Tabs} from './tabs';
 import {Overview} from './tab-panels/overview';
 import {Details} from './tab-panels/details';
 import {Reviews} from './tab-panels/reviews';
-import {FilmInfo} from '../../types/filmInfo.ts';
+import {FilmDetailsInfo} from '../../types/filmDetailsInfo.ts';
 import {Review} from '../../types/review.ts';
 
 export const TabTypes = ['Overview', 'Details', 'Reviews'] as const;
 
 interface FilmDescriptionProps {
-  film: FilmInfo;
+  film: FilmDetailsInfo;
   reviews: Review[];
 }
 

@@ -1,6 +1,5 @@
-import {FilmInfo} from '../types/filmInfo.ts';
-
 import {DEFAULT_GENRE} from '../consts.ts';
+import {FilmInfo} from '../types/filmInfo.ts';
 
 export const filterFilmsByGenre = (films: FilmInfo[], genre: string) => {
   if (genre === DEFAULT_GENRE) {

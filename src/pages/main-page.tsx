@@ -2,19 +2,20 @@ import * as React from 'react';
 import {Footer} from '../components/footer/footer.tsx';
 import {Catalog} from '../components/catalog/catalog.tsx';
 import {FilmCard} from '../components/film-card/film-card.tsx';
-import {selectFilms, selectFilteredByGenreFilms} from '../store/reducer.ts';
+import {selectFilteredByGenreFilms, selectIsFilmsLoading, selectPromo} from '../store/reducer.ts';
 import {useSelector} from 'react-redux';
 
 export const MainPage = () => {
-  const films = useSelector(selectFilms);
+  const promo = useSelector(selectPromo);
   const filteredFilms = useSelector(selectFilteredByGenreFilms);
+  const isLoading = useSelector(selectIsFilmsLoading);
 
   return (
     <React.Fragment>
-      <FilmCard film={films[0]}/>
+      <FilmCard film={promo} isLoading={isLoading}/>
 
       <div className="page-content">
-        <Catalog films={filteredFilms}/>
+        <Catalog films={filteredFilms} isLoading={isLoading}/>
         <Footer/>
       </div>
     </React.Fragment>

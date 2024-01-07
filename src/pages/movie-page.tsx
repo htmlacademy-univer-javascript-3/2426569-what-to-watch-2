@@ -10,21 +10,18 @@ import {FilmDescription} from '../components/film-descrtipion/film-description.t
 import REVIEW_LIST from '../mocs/review.ts';
 import {FilmList} from '../components/catalog/film-list/film-list.tsx';
 import {useSelector} from 'react-redux';
-import {selectFilms} from '../store/reducer.ts';
+import {selectFilmById, selectSimilarFilms} from '../store/reducer.ts';
 
 const COUNT_FAVORITE = 9;
 
 export const MoviePage = () => {
   const {id} = useParams();
-  const films = useSelector(selectFilms);
-  const film = films.find((item) => item.id === id);
+  const film = useSelector(selectFilmById(id));
+  const similarFilms = useSelector(selectSimilarFilms(id));
 
   if (!film) {
     return (<Navigate to={ROUTES_LINKS.NOT_FOUND}/>);
   }
-
-  const genre = film.genre;
-  const filteredFilms = films.filter((f) => f.genre === genre && f.id !== id);
 
   return (
 
@@ -84,11 +81,11 @@ export const MoviePage = () => {
 
       <div className="page-content">
         {
-          filteredFilms.length > 0 && (
+          similarFilms.length > 0 && (
             <section className="catalog catalog--like-this">
               <h2 className="catalog__title">More like this</h2>
 
-              <FilmList filmsData={filteredFilms} maxLength={4}/>
+              <FilmList filmsData={similarFilms} maxLength={4}/>
             </section>
           )
         }

@@ -4,10 +4,10 @@ import {useNavigate} from 'react-router-dom';
 import {Icon} from '../icon/icon.tsx';
 import {ICONS} from '../icon/icons.ts';
 import {formatDuration} from '../../utils/timeFormat.ts';
-import {FilmInfo} from '../../types/filmInfo.ts';
+import {FilmDetailsInfo} from '../../types/filmDetailsInfo.ts';
 
 interface PlayerProps {
-  film: FilmInfo;
+  film: FilmDetailsInfo;
 }
 
 function PlayerComponent({film: {posterImage, videoLink, name, runTime}}: PlayerProps) {

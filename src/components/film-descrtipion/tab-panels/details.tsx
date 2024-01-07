@@ -1,6 +1,6 @@
 import {FC, memo, PropsWithChildren} from 'react';
 
-import {FilmInfo} from '../../../types/filmInfo.ts';
+import {FilmDetailsInfo} from '../../../types/filmDetailsInfo.ts';
 interface FilmDetailsItemProps {
   name: string;
 }
@@ -18,7 +18,7 @@ const FilmDetailsItemComponent: FC<PropsWithChildren<FilmDetailsItemProps>> = ({
 const FilmDetailsItem = memo(FilmDetailsItemComponent);
 
 interface FilmDetailsProps {
-  film: FilmInfo;
+  film: FilmDetailsInfo;
 }
 
 const FilmDetailsComponent: FC<FilmDetailsProps> = ({film}) => {

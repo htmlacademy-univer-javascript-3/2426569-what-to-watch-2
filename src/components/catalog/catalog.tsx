@@ -1,13 +1,16 @@
 import {GenreList} from './genre-list/genre-list.tsx';
 import {FilmList} from './film-list/film-list.tsx';
-import {FilmInfo} from '../../types/filmInfo.ts';
 import {useState} from 'react';
 import {MAX_FILMS_IN_PAGE} from '../../consts.ts';
+import {FilmInfo} from '../../types/filmInfo.ts';
+import {SpinnerWrapper} from '../spinner/spinner-wrapper.tsx';
+
 
 interface Props {
   withoutGenres?: boolean;
   withoutShowMore?: boolean;
   films: FilmInfo[];
+  isLoading: boolean;
 }
 
 interface ShowMoreButtonProps {
@@ -20,7 +23,7 @@ const ShowMoreButton: React.FC<ShowMoreButtonProps> = ({onClick}: ShowMoreButton
   </div>
 );
 
-export const Catalog = ({withoutGenres = false, withoutShowMore = false, films}: Props) => {
+export const Catalog = ({withoutGenres = false, withoutShowMore = false, films, isLoading}: Props) => {
   const maxFilmCount = withoutShowMore ? films.length : MAX_FILMS_IN_PAGE;
   const [visibleFilms, setVisibleFilms] = useState(maxFilmCount);
 
@@ -31,14 +34,15 @@ export const Catalog = ({withoutGenres = false, withoutShowMore = false, films}:
   return (
     <section className="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
+      <SpinnerWrapper isLoading={isLoading}>
+        {!withoutGenres ? <GenreList/> : null}
 
-      {!withoutGenres ? <GenreList/> : null}
+        <FilmList filmsData={films} maxLength={visibleFilms}/>
 
-      <FilmList filmsData={films} maxLength={visibleFilms}/>
-
-      {!withoutShowMore && visibleFilms < films.length ? (
-        <ShowMoreButton onClick={handleShowMoreClick} />
-      ) : null}
+        {!withoutShowMore && visibleFilms < films.length ? (
+          <ShowMoreButton onClick={handleShowMoreClick} />
+        ) : null}
+      </SpinnerWrapper>
     </section>
   );
 };
