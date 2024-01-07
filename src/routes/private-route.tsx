@@ -1,14 +1,19 @@
 import {Navigate} from 'react-router-dom';
-import {ROUTES_LINKS} from './route-links.ts';
+import {RoutesLinks} from './route-links.ts';
 import React from 'react';
+import {useSelector} from 'react-redux';
+import {AuthStatus} from '../types/auth-status.ts';
+import {selectAuthStatus} from '../store/user-reducer/selectors.ts';
 
 type PrivateRouteProps = {
-  hasAccess?: boolean;
   children: React.JSX.Element;
 }
 
-const PrivateRoute: React.FC<PrivateRouteProps> = ({hasAccess = false, children}: PrivateRouteProps) => (
-  hasAccess ? children : <Navigate to={ROUTES_LINKS.SING_IN} />
-);
+const PrivateRoute: React.FC<PrivateRouteProps> = ({children}: PrivateRouteProps) => {
+  const isAuth = AuthStatus.Auth === useSelector(selectAuthStatus);
+  return (
+    isAuth ? children : <Navigate to={RoutesLinks.SingIn}/>
+  );
+};
 
 export default PrivateRoute;

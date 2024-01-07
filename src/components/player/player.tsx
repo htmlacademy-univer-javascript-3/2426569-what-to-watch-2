@@ -3,8 +3,8 @@ import React, {useEffect, useRef, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {Icon} from '../icon/icon.tsx';
 import {ICONS} from '../icon/icons.ts';
-import {formatDuration} from '../../utils/timeFormat.ts';
-import {FilmDetailsInfo} from '../../types/filmDetailsInfo.ts';
+import {formatDuration} from '../../utils/time-format.ts';
+import {FilmDetailsInfo} from '../../types/film-details-info.ts';
 
 interface PlayerProps {
   film: FilmDetailsInfo;

@@ -1,9 +1,10 @@
 import * as React from 'react';
 import {GenreItem} from './genre-item.tsx';
-import {changeGenre, selectFilms, selectGenre} from '../../../store/reducer.ts';
 import {useDispatch, useSelector} from 'react-redux';
 import {useMemo} from 'react';
 import {DEFAULT_GENRE} from '../../../consts.ts';
+import {changeGenre} from '../../../store/actions.ts';
+import {selectFilms, selectGenre} from '../../../store/app-reducer/selectors.ts';
 
 export const GenreList: React.FC = () => {
   const dispatch = useDispatch();

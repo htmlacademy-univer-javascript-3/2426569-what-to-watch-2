@@ -1,4 +1,4 @@
-import '../css/404.css';
+import './404.css';
 
 export const NotFoundPage = () => (
   <div className="not_found_page">

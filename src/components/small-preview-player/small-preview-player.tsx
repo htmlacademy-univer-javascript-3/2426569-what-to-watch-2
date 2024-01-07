@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from 'react';
-import {FilmInfo} from '../../types/filmInfo.ts';
+import {FilmInfo} from '../../types/film-info.ts';
 
 type Props = FilmInfo & { isMuted?: boolean; width: string; height: string };
 

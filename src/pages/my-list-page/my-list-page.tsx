@@ -1,8 +1,9 @@
-import {Footer} from '../components/footer/footer.tsx';
-import {Header} from '../components/header/header.tsx';
-import {Catalog} from '../components/catalog/catalog.tsx';
+import {Footer} from '../../components/footer/footer.tsx';
+import {Header} from '../../components/header/header.tsx';
+import {Catalog} from '../../components/catalog/catalog.tsx';
 import {useSelector} from 'react-redux';
-import {selectIsFilmsLoading, selectMyFilms} from '../store/reducer.ts';
+
+import {selectIsFilmsLoading, selectMyFilms} from '../../store/app-reducer/selectors.ts';
 
 export const MyListPage = () => {
   const films = useSelector(selectMyFilms);
@@ -11,7 +12,7 @@ export const MyListPage = () => {
   return (
     <div className="user-page">
       <Header
-        classNames={'user-page__head'}
+        classNames={'userData-page__head'}
         pageTitle={
           <h1 className="page-title user-page__title">My list <span className="user-page__film-count">9</span></h1>
         }

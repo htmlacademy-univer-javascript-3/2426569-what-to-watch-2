@@ -1,16 +1,17 @@
 import {Fragment} from 'react';
-import {Footer} from '../components/footer/footer.tsx';
-import {Header} from '../components/header/header.tsx';
+import {Footer} from '../../components/footer/footer.tsx';
+import {Header} from '../../components/header/header.tsx';
 import {Navigate, useParams} from 'react-router-dom';
-import {ROUTES_LINKS} from '../routes/route-links.ts';
-import {FilmCardLinkButton} from '../components/film-card-buttons/film-card-link-button.tsx';
-import {Icon} from '../components/icon/icon.tsx';
-import {ICONS} from '../components/icon/icons.ts';
-import {FilmDescription} from '../components/film-descrtipion/film-description.tsx';
-import REVIEW_LIST from '../mocs/review.ts';
-import {FilmList} from '../components/catalog/film-list/film-list.tsx';
+import {RoutesLinks} from '../../routes/route-links.ts';
+import {FilmCardLinkButton} from '../../components/film-card-buttons/film-card-link-button.tsx';
+import {Icon} from '../../components/icon/icon.tsx';
+import {ICONS} from '../../components/icon/icons.ts';
+import {FilmDescription} from '../../components/film-descrtipion/film-description.tsx';
+import REVIEW_LIST from '../../mocs/review.ts';
+import {FilmList} from '../../components/catalog/film-list/film-list.tsx';
 import {useSelector} from 'react-redux';
-import {selectFilmById, selectSimilarFilms} from '../store/reducer.ts';
+
+import {selectFilmById, selectSimilarFilms} from '../../store/app-reducer/selectors.ts';
 
 const COUNT_FAVORITE = 9;
 
@@ -20,7 +21,7 @@ export const MoviePage = () => {
   const similarFilms = useSelector(selectSimilarFilms(id));
 
   if (!film) {
-    return (<Navigate to={ROUTES_LINKS.NOT_FOUND}/>);
+    return (<Navigate to={RoutesLinks.NotFound}/>);
   }
 
   return (
@@ -28,13 +29,11 @@ export const MoviePage = () => {
     <Fragment>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
+          <Header/>
+
           <div className="film-card__bg">
             <img src={film.backgroundImage} alt={film.name}/>
           </div>
-
-          <h1 className="visually-hidden">WTW</h1>
-
-          <Header/>
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
@@ -49,18 +48,18 @@ export const MoviePage = () => {
                   title={'Play'}
                   classNames={'btn--play'}
                   icon={<Icon {...ICONS.PLAY_START}/>}
-                  toLink={ROUTES_LINKS.PLAYER.replace(':id', film.id)}
+                  toLink={RoutesLinks.Player.replace(':id', film.id)}
                 />
                 <FilmCardLinkButton
                   title={'My list'}
                   classNames={'btn--list'}
                   icon={<Icon {...ICONS.IN_LIST}/>}
-                  toLink={ROUTES_LINKS.MY_LIST}
+                  toLink={RoutesLinks.MyList}
                 >
                   <span className="film-card__count">{COUNT_FAVORITE}</span>
                 </FilmCardLinkButton>
                 <FilmCardLinkButton
-                  toLink={ROUTES_LINKS.ADD_REVIEW.replace(':id', film.id)}
+                  toLink={RoutesLinks.AddReview.replace(':id', film.id)}
                   title={'Add review'}
                 />
               </div>

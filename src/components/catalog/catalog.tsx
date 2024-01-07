@@ -2,7 +2,7 @@ import {GenreList} from './genre-list/genre-list.tsx';
 import {FilmList} from './film-list/film-list.tsx';
 import {useState} from 'react';
 import {MAX_FILMS_IN_PAGE} from '../../consts.ts';
-import {FilmInfo} from '../../types/filmInfo.ts';
+import {FilmInfo} from '../../types/film-info.ts';
 import {SpinnerWrapper} from '../spinner/spinner-wrapper.tsx';
 
 
