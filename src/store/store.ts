@@ -1,5 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit';
-import Reducer from './reducer.ts';
+import {reducer} from './reducer.ts';
 import configureAxios from '../services/api.ts';
 
 const axios = configureAxios();
@@ -11,7 +11,5 @@ export const store = configureStore({
         extraArgument: axios,
       },
     }),
-  reducer: {
-    app: Reducer,
-  },
+  reducer: reducer,
 });

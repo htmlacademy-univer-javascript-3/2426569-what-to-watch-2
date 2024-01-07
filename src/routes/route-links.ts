@@ -1,10 +1,10 @@
-export const enum ROUTES_LINKS {
-  MAIN = '/',
-  SING_IN = '/login',
-  MY_LIST = '/mylist',
-  FILMS = '/films',
-  FILM = '/films/:id',
-  ADD_REVIEW = '/films/:id/review',
-  PLAYER = '/player/:id',
-  NOT_FOUND = '*',
+export const enum RoutesLinks {
+  Main = '/',
+  SingIn = '/login',
+  MyList = '/mylist',
+  Films = '/films',
+  Film = '/films/:id',
+  AddReview = '/films/:id/review',
+  Player = '/player/:id',
+  NotFound = '*',
 }

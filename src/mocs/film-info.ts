@@ -1,4 +1,4 @@
-import {FilmDetailsInfo} from '../types/filmDetailsInfo.ts';
+import {FilmDetailsInfo} from '../types/film-details-info';
 export const FILM_LIST: FilmDetailsInfo[] = [
   {
     id: 'd1033708-4b29-4f5e-9572-f4f1b90389de',
