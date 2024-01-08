@@ -1,6 +1,6 @@
 import {Review} from '../types/review';
 
-const REVIEW_LIST: Review[] = [
+const reviews: Review[] = [
   {
     id: 1,
     user: 'Christina',
@@ -17,4 +17,4 @@ const REVIEW_LIST: Review[] = [
   }
 ];
 
-export default REVIEW_LIST;
+export default reviews;

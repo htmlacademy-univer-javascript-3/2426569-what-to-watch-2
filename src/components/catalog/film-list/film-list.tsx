@@ -18,7 +18,7 @@ const FilmListComponent = ({filmsData, maxLength = filmsData.length}: Props) => 
   };
 
   return (
-    <div className="catalog__films-list">
+    <div className="catalog__films-list" data-testid="film-list">
       {filmsData.length === 0 && <span>Films not found</span>}
       {filmsData.slice(0, maxLength).map((film) => (
         <SmallFilmCard

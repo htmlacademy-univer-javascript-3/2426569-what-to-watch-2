@@ -5,7 +5,7 @@ import {getDateString} from '../../../utils/time-format';
 const ReviewComponent: FC<Review> = ({comment, user, date, rating}) => {
   const dateString = useMemo(() => getDateString(new Date(date)), [date]);
   return (
-    <div className="review">
+    <div className="review" data-testid={'review-quote'}>
       <blockquote className="review__quote">
         <p className="review__text">{comment}</p>
 

@@ -1,19 +1,9 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {FilmInfo} from '../../types/film-info';
-import {FilmDetailsInfo} from '../../types/film-details-info';
+import {ReducerName} from '../../types/reducer-name.ts';
 import {fetchFilm, fetchReviews, fetchSimilar, toggleFavorite} from '../api-action';
-import {Review} from '../../types/review';
+import {FilmReducerState} from '../../types/film-reducer-state.ts';
 
-interface AppReducerState {
-  film: FilmDetailsInfo | null;
-  reviewsList: Review[];
-  similarFilmsList: FilmInfo[];
-
-  isFilmLoading: boolean;
-  isSimilarFilmsLoading: boolean;
-}
-
-const initialState: AppReducerState = {
+const initialState: FilmReducerState = {
   film: null,
   reviewsList: [],
   similarFilmsList: [],
@@ -23,7 +13,7 @@ const initialState: AppReducerState = {
 };
 
 const filmSlice = createSlice({
-  name: 'app',
+  name: ReducerName.Film,
   initialState,
   reducers: {},
   extraReducers(builder) {

@@ -15,7 +15,7 @@ interface TabHeaderComponentProps {
 
 function TabHeaderComponent({isActive, onClick, tabTitle}: TabHeaderComponentProps) {
   return (
-    <li className={`film-nav__item ${isActive ? 'film-nav__item--active' : ''}`} onClick={onClick}>
+    <li data-testid={`tab-header-${tabTitle}`} className={`film-nav__item ${isActive ? 'film-nav__item--active' : ''}`} onClick={onClick}>
       <Link to="" className="film-nav__link">
         {tabTitle}
       </Link>

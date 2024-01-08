@@ -27,6 +27,7 @@ function SmallFilmCardComponent({film, isActive, onMouseEnter, onMouseLeave}: Sm
       onMouseEnter={handleMouseEnter}
       onMouseLeave={onMouseLeave}
       data-active={isActive}
+      data-testid="small-film-card"
     >
       <SmallPreviewPlayer {...film} width={CARD_WIDTH} height={CARD_HEIGHT}/>
       <h3 className="small-film-card__title">

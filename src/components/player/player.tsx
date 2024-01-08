@@ -14,7 +14,6 @@ function PlayerComponent({film: {posterImage, videoLink, name, runTime}}: Player
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [isMuted, setIsMuted] = useState<boolean>(false);
   const [lastTime, setLastTime] = useState(0);
   const [progress, setProgress] = useState(0);
   const navigate = useNavigate();
@@ -35,10 +34,6 @@ function PlayerComponent({film: {posterImage, videoLink, name, runTime}}: Player
     setIsPlaying(!isPlaying);
   };
 
-  const handleMuteClick = () => {
-    setIsMuted((prev) => !prev);
-  };
-
   const handleFullscreenClick = () => {
     videoRef.current?.requestFullscreen();
   };
@@ -55,12 +50,12 @@ function PlayerComponent({film: {posterImage, videoLink, name, runTime}}: Player
   };
 
   return (
-    <div className="player">
+    <div className="player" data-testid="player">
       <video
+        data-testid="player-video"
         autoPlay
         ref={videoRef}
         src={videoLink}
-        muted={!isMuted}
         className="player__video"
         poster={posterImage}
         onTimeUpdate={handleTimeUpdate}
@@ -84,12 +79,6 @@ function PlayerComponent({film: {posterImage, videoLink, name, runTime}}: Player
             {
               !isPlaying ? <><Icon {...ICONS.PLAY_START}/><span>Play</span></>
                 : <><Icon {...ICONS.PAUSE}/><span>Pause</span></>
-            }
-          </button>
-          <button type="button" className="player__play" onClick={handleMuteClick}>
-            {
-              isMuted ? <><Icon {...ICONS.MUTE}/><span>Mute</span></>
-                : <><Icon {...ICONS.UNMUTE}/><span>Unmute</span></>
             }
           </button>
           <div className="player__name">{name}</div>
