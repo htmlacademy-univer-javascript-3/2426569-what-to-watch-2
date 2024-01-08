@@ -1,6 +1,6 @@
-import {SmallFilmCard} from './small-film-card.tsx';
+import {SmallFilmCard} from './small-film-card';
 import {useState} from 'react';
-import {FilmInfo} from '../../../types/film-info.ts';
+import {FilmInfo} from '../../../types/film-info';
 
 type Props = {
   filmsData: FilmInfo[];

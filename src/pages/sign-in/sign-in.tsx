@@ -1,23 +1,21 @@
-// pages/SignIn.tsx
 import React, {FC, useState} from 'react';
-import {Footer} from '../../components/footer/footer.tsx';
+import {Footer} from '../../components/footer/footer';
 import {Header} from '../../components/header';
 import {InputField} from '../../components/input-field';
-import {useAppDispatch} from '../../hooks/store.ts';
-import {login} from '../../store/api-action.ts';
+import {useAppDispatch, useAppSelector} from '../../hooks/store';
+import {login} from '../../store/api-action';
 import {Navigate} from 'react-router-dom';
-import {AuthStatus} from '../../types/auth-status.ts';
-import {useSelector} from 'react-redux';
-import {selectAuthStatus} from '../../store/user-reducer/selectors.ts';
-import {RoutesLinks} from '../../routes/route-links.ts';
-import {EMAIL_PATTERN} from '../../consts.ts';
+import {AuthStatus} from '../../types/auth-status';
+import {selectAuthStatus} from '../../store/user-reducer/selectors';
+import {RoutesLinks} from '../../routes/route-links';
+import {EMAIL_PATTERN} from '../../consts';
 
 export const SignIn: FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const dispatch = useAppDispatch();
-  const authStatus = useSelector(selectAuthStatus);
+  const authStatus = useAppSelector(selectAuthStatus);
 
   if (authStatus === AuthStatus.Auth) {
     return <Navigate to={RoutesLinks.Main}/>;
@@ -52,7 +50,7 @@ export const SignIn: FC = () => {
 
   return (
     <div className="user-page">
-      <Header withoutUserBlock classNames="userData-page__head"/>
+      <Header withoutUserBlock classNames="user-page__head"/>
       {
         error && (
           <div className="sign-in__message">

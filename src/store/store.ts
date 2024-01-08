@@ -1,6 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit';
-import {reducer} from './reducer.ts';
-import configureAxios from '../services/api.ts';
+import {reducer} from './reducer';
+import configureAxios from '../services/api';
 
 const axios = configureAxios();
 

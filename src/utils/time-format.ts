@@ -1,4 +1,4 @@
-import {SECONDS_IN_HOUR, SECONDS_IN_MINUTE} from '../consts.ts';
+import {SECONDS_IN_HOUR, SECONDS_IN_MINUTE} from '../consts';
 
 export const formatDuration = (timeInSeconds: number): string => {
   const hours = Math.floor(timeInSeconds / SECONDS_IN_HOUR);
@@ -13,3 +13,8 @@ export const formatDuration = (timeInSeconds: number): string => {
     return `-${formatTwoDigits(minutes)}:${formatTwoDigits(seconds)}`;
   }
 };
+
+export const getDateString = (postDate: Date) =>
+  `${postDate.toLocaleString('eng', {
+    month: 'long',
+  })} ${postDate.getDate()}, ${postDate.getFullYear()}`;

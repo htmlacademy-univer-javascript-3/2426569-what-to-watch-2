@@ -9,7 +9,7 @@ export interface FilmShortInfo {
   isFavorite: boolean;
 }
 
-export interface FilmDetailsInfo extends FilmShortInfo{
+export interface FilmDetailsInfo extends FilmShortInfo {
   backgroundColor: string;
   rating: number;
   runTime: number;

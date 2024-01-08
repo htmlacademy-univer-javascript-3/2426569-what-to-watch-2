@@ -1,6 +1,6 @@
 
 export enum Actions {
   SetGenre = '/setGenre',
-  SetAuthorizationStatus = '/setAuthorizationStatus',
+  SetAuthStatus = '/setAuthStatus',
   SetError = '/setError',
 }

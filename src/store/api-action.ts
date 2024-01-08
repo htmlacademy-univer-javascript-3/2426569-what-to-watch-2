@@ -1,11 +1,11 @@
-import {AppDispatch, State} from '../types/state.ts';
+import {AppDispatch, State} from '../types/state';
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {FilmInfo} from '../types/film-info.ts';
-import {FilmDetailsInfo, FilmShortInfo} from '../types/film-details-info.ts';
-import {Review} from '../types/review.ts';
-import {AuthData} from '../types/auth-data.ts';
-import {UserData} from '../types/user-data.ts';
+import {FilmInfo} from '../types/film-info';
+import {FilmDetailsInfo, FilmShortInfo} from '../types/film-details-info';
+import {Review} from '../types/review';
+import {AuthData} from '../types/auth-data';
+import {UserData} from '../types/user-data';
 
 interface ApiState {
   dispatch: AppDispatch;
@@ -92,3 +92,16 @@ export const fetchSimilar = createAsyncThunk<
   const {data} = await api.get<FilmInfo[]>(`/films/${filmId}/similar`);
   return data;
 });
+
+export const addReview = createAsyncThunk<
+  Review,
+  { comment: string; rating: number; filmId: string },
+  ApiState
+>(
+  '/comments/addReview',
+  async ({ comment, rating, filmId }, { extra: api }) =>
+    await api.post(`/comments/${filmId}`, {
+      comment,
+      rating,
+    })
+);

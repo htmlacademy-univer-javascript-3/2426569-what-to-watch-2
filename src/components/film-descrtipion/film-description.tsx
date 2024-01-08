@@ -3,9 +3,9 @@ import {Tabs} from './tabs';
 import {Overview} from './tab-panels/overview';
 import {Details} from './tab-panels/details';
 import {Reviews} from './tab-panels/reviews';
-import {FilmDetailsInfo} from '../../types/film-details-info.ts';
-import {Review} from '../../types/review.ts';
-import {TabType, TabTypes} from '../../types/tab-types.tsx';
+import {FilmDetailsInfo} from '../../types/film-details-info';
+import {Review} from '../../types/review';
+import {TabType, TabTypes} from '../../types/tab-types';
 
 interface FilmDescriptionProps {
   film: FilmDetailsInfo;
@@ -30,7 +30,7 @@ const FilmDescriptionComponent: FC<FilmDescriptionProps> = ({film, reviews}) => 
       default:
         return null;
     }
-  }, [activeTab, film]);
+  }, [activeTab, film, reviews]);
 
   useEffect(() => {
     let isMounted = true;

@@ -1,9 +1,9 @@
 import {Navigate} from 'react-router-dom';
-import {RoutesLinks} from './route-links.ts';
+import {RoutesLinks} from './route-links';
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {AuthStatus} from '../types/auth-status.ts';
-import {selectAuthStatus} from '../store/user-reducer/selectors.ts';
+import {AuthStatus} from '../types/auth-status';
+import {selectAuthStatus} from '../store/user-reducer/selectors';
 
 type PrivateRouteProps = {
   children: React.JSX.Element;

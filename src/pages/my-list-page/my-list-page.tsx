@@ -1,20 +1,22 @@
-import {Footer} from '../../components/footer/footer.tsx';
-import {Header} from '../../components/header/header.tsx';
-import {Catalog} from '../../components/catalog/catalog.tsx';
+import {Footer} from '../../components/footer/footer';
+import {Header} from '../../components/header';
+import {Catalog} from '../../components/catalog/catalog';
 import {useSelector} from 'react-redux';
 
-import {selectIsFilmsLoading, selectMyFilms} from '../../store/app-reducer/selectors.ts';
+import {selectIsFilmsLoading} from '../../store/app-reducer/selectors';
+import {selectFavoriteCount, selectFavoriteFilms} from '../../store/user-reducer/selectors';
 
 export const MyListPage = () => {
-  const films = useSelector(selectMyFilms);
+  const films = useSelector(selectFavoriteFilms);
+  const favoriteCount = useSelector(selectFavoriteCount);
   const isLoading = useSelector(selectIsFilmsLoading);
 
   return (
     <div className="user-page">
       <Header
-        classNames={'userData-page__head'}
+        classNames={'user-page__head'}
         pageTitle={
-          <h1 className="page-title user-page__title">My list <span className="user-page__film-count">9</span></h1>
+          <h1 className="page-title user-page__title">My list <span className="user-page__film-count">{favoriteCount}</span></h1>
         }
       />
 

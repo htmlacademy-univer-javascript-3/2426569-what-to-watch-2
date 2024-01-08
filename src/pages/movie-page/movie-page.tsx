@@ -1,31 +1,54 @@
-import {Fragment} from 'react';
-import {Footer} from '../../components/footer/footer.tsx';
-import {Header} from '../../components/header/header.tsx';
-import {Navigate, useParams} from 'react-router-dom';
-import {RoutesLinks} from '../../routes/route-links.ts';
-import {FilmCardLinkButton} from '../../components/film-card-buttons/film-card-link-button.tsx';
-import {Icon} from '../../components/icon/icon.tsx';
-import {ICONS} from '../../components/icon/icons.ts';
-import {FilmDescription} from '../../components/film-descrtipion/film-description.tsx';
-import REVIEW_LIST from '../../mocs/review.ts';
-import {FilmList} from '../../components/catalog/film-list/film-list.tsx';
+import {Fragment, useEffect} from 'react';
+import {Footer} from '../../components/footer/footer';
+import {Header} from '../../components/header/header';
+import {useParams} from 'react-router-dom';
+import {RoutesLinks} from '../../routes/route-links';
+import {FilmCardLinkButton} from '../../components/film-card-buttons/film-card-link-button';
+import {Icon} from '../../components/icon/icon';
+import {ICONS} from '../../components/icon/icons';
+import {FilmDescription} from '../../components/film-descrtipion/film-description';
+import {FilmList} from '../../components/catalog/film-list/film-list';
 import {useSelector} from 'react-redux';
-
-import {selectFilmById, selectSimilarFilms} from '../../store/app-reducer/selectors.ts';
-
-const COUNT_FAVORITE = 9;
+import {
+  selectFilm,
+  selectIsFilmLoading,
+  selectIsSimilarFilmsLoading,
+  selectReviews,
+  selectSimilarFilms
+} from '../../store/film-reducer/selectors';
+import {useAppDispatch} from '../../hooks/store';
+import {fetchFilm, fetchReviews, fetchSimilar} from '../../store/api-action';
+import {Spinner, SpinnerWrapper} from '../../components/spinner/spinner-wrapper';
+import {NotFoundPage} from '../not-found-page/not-found-page';
+import {selectAuthStatus, selectFavoriteCount} from '../../store/user-reducer/selectors';
+import {AuthStatus} from '../../types/auth-status';
 
 export const MoviePage = () => {
-  const {id} = useParams();
-  const film = useSelector(selectFilmById(id));
-  const similarFilms = useSelector(selectSimilarFilms(id));
+  const {id = ''} = useParams();
+  const film = useSelector(selectFilm);
+  const isFilmLoading = useSelector(selectIsFilmLoading);
+  const similarFilms = useSelector(selectSimilarFilms);
+  const isSimilarFilmsLoading = useSelector(selectIsSimilarFilmsLoading);
+  const reviews = useSelector(selectReviews);
+  const isAuth = useSelector(selectAuthStatus) === AuthStatus.Auth;
+  const favoriteCount = useSelector(selectFavoriteCount);
+  const dispatch = useAppDispatch();
 
-  if (!film) {
-    return (<Navigate to={RoutesLinks.NotFound}/>);
+  useEffect(() => {
+    dispatch(fetchFilm(id));
+    dispatch(fetchSimilar(id));
+    dispatch(fetchReviews(id));
+  }, [dispatch, id]);
+
+  if (isFilmLoading) {
+    return <Spinner isFullPage/>;
+  }
+
+  if (!id || !film) {
+    return (<NotFoundPage/>);
   }
 
   return (
-
     <Fragment>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
@@ -53,15 +76,17 @@ export const MoviePage = () => {
                 <FilmCardLinkButton
                   title={'My list'}
                   classNames={'btn--list'}
-                  icon={<Icon {...ICONS.IN_LIST}/>}
+                  icon={film.isFavorite ? <Icon {...ICONS.IN_LIST}/> : <Icon {...ICONS.ADD_LIST}/>}
                   toLink={RoutesLinks.MyList}
                 >
-                  <span className="film-card__count">{COUNT_FAVORITE}</span>
+                  <span className="film-card__count">{favoriteCount}</span>
                 </FilmCardLinkButton>
-                <FilmCardLinkButton
-                  toLink={RoutesLinks.AddReview.replace(':id', film.id)}
-                  title={'Add review'}
-                />
+                {isAuth && (
+                  <FilmCardLinkButton
+                    toLink={RoutesLinks.AddReview.replace(':id', film.id)}
+                    title={'Add review'}
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -72,22 +97,23 @@ export const MoviePage = () => {
             <div className="film-card__poster film-card__poster--big">
               <img src={film.posterImage} alt={film.name} width="218" height="327"/>
             </div>
-
-            <FilmDescription film={film} reviews={REVIEW_LIST}/>
+            <FilmDescription film={film} reviews={reviews}/>
           </div>
         </div>
       </section>
 
       <div className="page-content">
-        {
-          similarFilms.length > 0 && (
-            <section className="catalog catalog--like-this">
-              <h2 className="catalog__title">More like this</h2>
+        <SpinnerWrapper isLoading={isSimilarFilmsLoading}>
+          {
+            similarFilms.length > 0 && (
+              <section className="catalog catalog--like-this">
+                <h2 className="catalog__title">More like this</h2>
 
-              <FilmList filmsData={similarFilms} maxLength={4}/>
-            </section>
-          )
-        }
+                <FilmList filmsData={similarFilms} maxLength={4}/>
+              </section>
+            )
+          }
+        </SpinnerWrapper>
         <Footer/>
       </div>
     </Fragment>

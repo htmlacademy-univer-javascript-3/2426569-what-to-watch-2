@@ -1,9 +1,9 @@
-import {GenreList} from './genre-list/genre-list.tsx';
-import {FilmList} from './film-list/film-list.tsx';
-import {useState} from 'react';
-import {MAX_FILMS_IN_PAGE} from '../../consts.ts';
-import {FilmInfo} from '../../types/film-info.ts';
-import {SpinnerWrapper} from '../spinner/spinner-wrapper.tsx';
+import {GenreList} from './genre-list/genre-list';
+import {FilmList} from './film-list/film-list';
+import {useEffect, useState} from 'react';
+import {MAX_FILMS_IN_PAGE} from '../../consts';
+import {FilmInfo} from '../../types/film-info';
+import {SpinnerWrapper} from '../spinner/spinner-wrapper';
 
 
 interface Props {
@@ -26,6 +26,10 @@ const ShowMoreButton: React.FC<ShowMoreButtonProps> = ({onClick}: ShowMoreButton
 export const Catalog = ({withoutGenres = false, withoutShowMore = false, films, isLoading}: Props) => {
   const maxFilmCount = withoutShowMore ? films.length : MAX_FILMS_IN_PAGE;
   const [visibleFilms, setVisibleFilms] = useState(maxFilmCount);
+
+  useEffect(() => {
+    setVisibleFilms(withoutShowMore ? films.length : MAX_FILMS_IN_PAGE);
+  }, [films, withoutShowMore]);
 
   const handleShowMoreClick = () => {
     setVisibleFilms((prevVisibleFilms) => prevVisibleFilms + MAX_FILMS_IN_PAGE);

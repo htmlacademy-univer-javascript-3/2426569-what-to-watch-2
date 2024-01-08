@@ -1,5 +1,5 @@
 import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
-import {getToken} from './token.ts';
+import {getToken} from './token';
 
 const BACKEND_URL = 'https://13.design.pages.academy/wtw';
 const REQUEST_TIMEOUT = 5000;

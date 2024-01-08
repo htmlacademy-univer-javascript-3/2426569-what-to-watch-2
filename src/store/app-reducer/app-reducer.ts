@@ -1,11 +1,11 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {DEFAULT_GENRE} from '../../consts.ts';
-import {FilmInfo} from '../../types/film-info.ts';
-import {FilmShortInfo} from '../../types/film-details-info.ts';
+import {DEFAULT_GENRE} from '../../consts';
+import {FilmInfo} from '../../types/film-info';
+import {FilmShortInfo} from '../../types/film-details-info';
 
-import {fetchFilms, fetchPromo} from '../api-action.ts';
-import {changeGenre} from '../actions.ts';
-import {filterFilmsByGenre} from '../../utils/film-filter.ts';
+import {fetchFilms, fetchPromo} from '../api-action';
+import {changeGenre} from '../actions';
+import {filterFilmsByGenre} from '../../utils/film-filter';
 
 interface AppReducerState {
   selectedGenre: string;
