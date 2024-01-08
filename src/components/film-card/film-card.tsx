@@ -1,14 +1,9 @@
 import {memo} from 'react';
-import {Header} from '../header';
-import {RoutesLinks} from '../../routes/route-links';
-import {ICONS} from '../icon/icons';
-import {FilmCardLinkButton} from '../film-card-buttons/film-card-link-button';
-import {Icon} from '../icon/icon';
-import {FilmShortInfo} from '../../types/film-details-info';
-import {SpinnerWrapper} from '../spinner/spinner-wrapper';
 import filmNotFoundGif from '../../../public/img/movie-not-found.gif';
-import {useSelector} from 'react-redux';
-import {selectFavoriteCount} from '../../store/user-reducer/selectors';
+import {FilmShortInfo} from '../../types/film-details-info';
+import {FilmCardButtons} from '../film-card-buttons/film-card-buttons.tsx';
+import {Header} from '../header';
+import {SpinnerWrapper} from '../spinner/spinner-wrapper';
 
 interface FilmCardProps {
   film?: FilmShortInfo;
@@ -16,7 +11,6 @@ interface FilmCardProps {
 }
 
 function FilmCardComponent({film, isLoading}: FilmCardProps) {
-  const favoriteCount = useSelector(selectFavoriteCount);
   return (
     <section className="film-card">
       <Header classNames={'film-card__head'}/>
@@ -46,22 +40,7 @@ function FilmCardComponent({film, isLoading}: FilmCardProps) {
                     <span className="film-card__year">{film.released}</span>
                   </p>
 
-                  <div className="film-card__buttons">
-                    <FilmCardLinkButton
-                      title={'Play'}
-                      classNames={'btn--play'}
-                      icon={<Icon {...ICONS.PLAY_START}/>}
-                      toLink={RoutesLinks.Player.replace(':id', film.id)}
-                    />
-                    <FilmCardLinkButton
-                      title={'My list'}
-                      classNames={'btn--list'}
-                      icon={film.isFavorite ? <Icon {...ICONS.IN_LIST}/> : <Icon {...ICONS.ADD_LIST}/>}
-                      toLink={RoutesLinks.MyList}
-                    >
-                      <span className="film-card__count">{favoriteCount}</span>
-                    </FilmCardLinkButton>
-                  </div>
+                  <FilmCardButtons filmId={film.id} isFavorite={film.isFavorite}/>
                 </div>
               </div>
             </div>

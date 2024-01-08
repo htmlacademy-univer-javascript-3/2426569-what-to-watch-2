@@ -16,7 +16,15 @@ export const PlayerPage = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchFilm(id));
+    let isMounted = true;
+
+    if (isMounted) {
+      dispatch(fetchFilm(id));
+    }
+
+    return () => {
+      isMounted = false;
+    };
   }, [dispatch, id]);
 
   if (isFilmLoading) {

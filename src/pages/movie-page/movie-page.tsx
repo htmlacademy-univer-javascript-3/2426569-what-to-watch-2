@@ -1,14 +1,14 @@
 import {Fragment, memo, useEffect} from 'react';
+import {useSelector} from 'react-redux';
+import {useParams} from 'react-router-dom';
+import {FilmList} from '../../components/catalog/film-list/film-list';
+import {FilmCardButtons} from '../../components/film-card-buttons/film-card-buttons.tsx';
+import {FilmDescription} from '../../components/film-descrtipion/film-description';
 import {Footer} from '../../components/footer/footer';
 import {Header} from '../../components/header';
-import {useParams} from 'react-router-dom';
-import {RoutesLinks} from '../../routes/route-links';
-import {FilmCardLinkButton} from '../../components/film-card-buttons/film-card-link-button';
-import {Icon} from '../../components/icon/icon';
-import {ICONS} from '../../components/icon/icons';
-import {FilmDescription} from '../../components/film-descrtipion/film-description';
-import {FilmList} from '../../components/catalog/film-list/film-list';
-import {useSelector} from 'react-redux';
+import {Spinner, SpinnerWrapper} from '../../components/spinner/spinner-wrapper';
+import {useAppDispatch} from '../../hooks/store';
+import {fetchFilm, fetchReviews, fetchSimilar} from '../../store/api-action';
 import {
   selectFilm,
   selectIsFilmLoading,
@@ -16,12 +16,7 @@ import {
   selectReviews,
   selectSimilarFilms
 } from '../../store/film-reducer/selectors';
-import {useAppDispatch} from '../../hooks/store';
-import {fetchFilm, fetchReviews, fetchSimilar} from '../../store/api-action';
-import {Spinner, SpinnerWrapper} from '../../components/spinner/spinner-wrapper';
 import {NotFoundPage} from '../not-found-page/not-found-page';
-import {selectAuthStatus, selectFavoriteCount} from '../../store/user-reducer/selectors';
-import {AuthStatus} from '../../types/auth-status';
 
 export const MoviePageComponent = () => {
   const {id = ''} = useParams();
@@ -30,14 +25,20 @@ export const MoviePageComponent = () => {
   const similarFilms = useSelector(selectSimilarFilms);
   const isSimilarFilmsLoading = useSelector(selectIsSimilarFilmsLoading);
   const reviews = useSelector(selectReviews);
-  const isAuth = useSelector(selectAuthStatus) === AuthStatus.Auth;
-  const favoriteCount = useSelector(selectFavoriteCount);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchFilm(id));
-    dispatch(fetchSimilar(id));
-    dispatch(fetchReviews(id));
+    let isMounted = true;
+
+    if (isMounted) {
+      dispatch(fetchFilm(id));
+      dispatch(fetchSimilar(id));
+      dispatch(fetchReviews(id));
+    }
+
+    return () => {
+      isMounted = false;
+    };
   }, [dispatch, id]);
 
   if (isFilmLoading) {
@@ -66,28 +67,7 @@ export const MoviePageComponent = () => {
                 <span className="film-card__year">{film.released}</span>
               </p>
 
-              <div className="film-card__buttons">
-                <FilmCardLinkButton
-                  title={'Play'}
-                  classNames={'btn--play'}
-                  icon={<Icon {...ICONS.PLAY_START}/>}
-                  toLink={RoutesLinks.Player.replace(':id', film.id)}
-                />
-                <FilmCardLinkButton
-                  title={'My list'}
-                  classNames={'btn--list'}
-                  icon={film.isFavorite ? <Icon {...ICONS.IN_LIST}/> : <Icon {...ICONS.ADD_LIST}/>}
-                  toLink={RoutesLinks.MyList}
-                >
-                  <span className="film-card__count">{favoriteCount}</span>
-                </FilmCardLinkButton>
-                {isAuth && (
-                  <FilmCardLinkButton
-                    toLink={RoutesLinks.AddReview.replace(':id', film.id)}
-                    title={'Add review'}
-                  />
-                )}
-              </div>
+              <FilmCardButtons filmId={film.id} isFavorite={film.isFavorite} withReview/>
             </div>
           </div>
         </div>

@@ -1,14 +1,14 @@
+import {memo, useEffect} from 'react';
+import {useSelector} from 'react-redux';
+import {useParams} from 'react-router-dom';
 import {Breadcrumbs} from '../../components/breadcrumbs/breadcrumbs';
 import {Header} from '../../components/header';
-import {useParams} from 'react-router-dom';
 import {ReviewForm} from '../../components/review-form/review-form';
-import {useSelector} from 'react-redux';
+import {Spinner} from '../../components/spinner/spinner-wrapper';
+import {useAppDispatch} from '../../hooks/store';
+import {fetchFilm} from '../../store/api-action';
 
 import {selectFilm, selectIsFilmLoading} from '../../store/film-reducer/selectors';
-import {useAppDispatch} from '../../hooks/store';
-import {memo, useEffect} from 'react';
-import {fetchFilm} from '../../store/api-action';
-import {Spinner} from '../../components/spinner/spinner-wrapper';
 import {NotFoundPage} from '../not-found-page/not-found-page';
 
 const AddReviewPage = function () {
@@ -18,7 +18,15 @@ const AddReviewPage = function () {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchFilm(id));
+    let isMounted = true;
+
+    if (isMounted) {
+      dispatch(fetchFilm(id));
+    }
+
+    return () => {
+      isMounted = false;
+    };
   }, [dispatch, id]);
 
   if (isFilmLoading) {

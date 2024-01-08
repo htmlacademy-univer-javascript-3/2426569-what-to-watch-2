@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {FilmInfo} from '../../types/film-info';
 import {FilmDetailsInfo} from '../../types/film-details-info';
-import {fetchFilm, fetchReviews, fetchSimilar} from '../api-action';
+import {fetchFilm, fetchReviews, fetchSimilar, toggleFavorite} from '../api-action';
 import {Review} from '../../types/review';
 
 interface AppReducerState {
@@ -50,6 +50,9 @@ const filmSlice = createSlice({
       })
       .addCase(fetchReviews.fulfilled, (state, action) => {
         state.reviewsList = action.payload;
+      })
+      .addCase(toggleFavorite.fulfilled, (state, action) => {
+        state.film = action.payload;
       });
   }
 });
