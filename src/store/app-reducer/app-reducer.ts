@@ -3,7 +3,7 @@ import {DEFAULT_GENRE} from '../../consts';
 import {FilmInfo} from '../../types/film-info';
 import {FilmShortInfo} from '../../types/film-details-info';
 
-import {fetchFilms, fetchPromo} from '../api-action';
+import {fetchFilms, fetchPromo, toggleFavorite} from '../api-action';
 import {changeGenre} from '../actions';
 import {filterFilmsByGenre} from '../../utils/film-filter';
 
@@ -59,6 +59,11 @@ const appSlice = createSlice({
       .addCase(fetchFilms.rejected, (state, action) => {
         state.isFilmsLoading = false;
         state.error = action.error.message;
+      })
+      .addCase(toggleFavorite.fulfilled, (state, action) => {
+        if (state.promo && action.payload.id === state.promo.id) {
+          state.promo = action.payload;
+        }
       });
   }
 });

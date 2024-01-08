@@ -36,7 +36,7 @@ function PlayerComponent({film: {posterImage, videoLink, name, runTime}}: Player
   };
 
   const handleMuteClick = () => {
-    setIsMuted(!isMuted);
+    setIsMuted((prev) => !prev);
   };
 
   const handleFullscreenClick = () => {

@@ -14,7 +14,6 @@ export interface FilmDetailsInfo extends FilmShortInfo {
   rating: number;
   runTime: number;
   scoresCount: number;
-  videoLink: string;
   starring: string[];
   description: string;
   director: string;

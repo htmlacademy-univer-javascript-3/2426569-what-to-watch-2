@@ -105,3 +105,26 @@ export const addReview = createAsyncThunk<
       rating,
     })
 );
+
+export const toggleFavorite = createAsyncThunk<
+  FilmDetailsInfo,
+  { filmId: string; status: boolean },
+  ApiState
+>(
+  'user/toggleFavorite',
+  async ({ filmId, status }, { extra: api }) => {
+    let requestStatus = 0;
+    if (status) {
+      requestStatus = 1;
+    }
+    const { data } = await api.post<FilmDetailsInfo>(
+      `/favorite/${filmId}/${requestStatus}`,
+      {
+        filmId,
+        status,
+      }
+    );
+
+    return data;
+  }
+);

@@ -1,10 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {checkAuth, fetchFavoriteFilms, login, logout} from '../api-action';
-import {AuthStatus} from '../../types/auth-status';
 import {dropToken, saveToken} from '../../services/token';
-import {UserData} from '../../types/user-data';
+import {AuthStatus} from '../../types/auth-status';
 import {FilmInfo} from '../../types/film-info';
+import {UserData} from '../../types/user-data';
 import {setAuthStatus} from '../actions';
+import {checkAuth, fetchFavoriteFilms, login, logout, toggleFavorite} from '../api-action';
 
 export interface UserReducerState {
   userData: UserData | null;
@@ -23,7 +23,7 @@ const initialState: UserReducerState = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: { },
+  reducers: {},
   extraReducers(builder) {
     builder
       .addCase(setAuthStatus, (state, action) => {
@@ -53,8 +53,12 @@ const userSlice = createSlice({
       .addCase(fetchFavoriteFilms.rejected, (state) => {
         state.favoriteFilms = [];
         state.favoriteCount = 0;
+      })
+      .addCase(toggleFavorite.fulfilled, (state, action) => {
+        state.favoriteCount += action.payload.isFavorite ? 1 : -1;
       });
   }
 });
+
 
 export default userSlice.reducer;
