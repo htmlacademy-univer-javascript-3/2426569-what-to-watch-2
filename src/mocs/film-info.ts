@@ -1,5 +1,7 @@
 import {FilmDetailsInfo} from '../types/film-details-info';
-export const FILM_LIST: FilmDetailsInfo[] = [
+import {FilmInfo} from '../types/film-info.ts';
+
+export const filmsDetails: FilmDetailsInfo[] = [
   {
     id: 'd1033708-4b29-4f5e-9572-f4f1b90389de',
     name: 'Fantastic Beasts: The Crimes of Grindelwald',
@@ -19,7 +21,7 @@ export const FILM_LIST: FilmDetailsInfo[] = [
     runTime: 134,
     genre: 'Fantasy',
     released: 2018,
-    isFavorite: false
+    isFavorite: true
   },
   {
     id: '3e1c4e03-7d50-43d1-ac9d-fa968f5c9e39',
@@ -169,3 +171,28 @@ export const FILM_LIST: FilmDetailsInfo[] = [
     isFavorite: false
   }
 ];
+
+export const filmsList: FilmInfo[] = [
+  {
+    id: '1',
+    name: 'Film 1',
+    previewImage: 'https://example.com/film1.jpg',
+    previewVideoLink: 'https://example.com/film1.mp4',
+    genre: 'Drama',
+  },
+  {
+    id: '2',
+    name: 'Film 2',
+    previewImage: 'https://example.com/film2.jpg',
+    previewVideoLink: 'https://example.com/film2.mp4',
+    genre: 'Action',
+  },
+  {
+    id: '3',
+    name: 'Film 3',
+    previewImage: 'https://example.com/film3.jpg',
+    previewVideoLink: 'https://example.com/film3.mp4',
+    genre: 'Comedy',
+  },
+];
+

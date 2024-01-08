@@ -12,7 +12,7 @@ interface SpinnerProps {
 
 function SpinnerComponent({isFullPage = false} : SpinnerProps) {
   return (
-    <div className={`spinner-wrapper ${isFullPage ? 'spinner-wrapper__full' : ''}`}>
+    <div data-testid="spinner" className={`spinner-wrapper ${isFullPage ? 'spinner-wrapper__full' : ''}`}>
       <div className="spinner"></div>
     </div>
   );

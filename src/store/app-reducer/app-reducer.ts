@@ -1,23 +1,11 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 import {DEFAULT_GENRE} from '../../consts';
-import {FilmInfo} from '../../types/film-info';
-import {FilmShortInfo} from '../../types/film-details-info';
+import {AppReducerState} from '../../types/app-reducer-state.ts';
+import {ReducerName} from '../../types/reducer-name.ts';
+import {filterFilmsByGenre} from '../../utils/film-filter';
+import {changeGenre, setError} from '../actions';
 
 import {fetchFilms, fetchPromo, toggleFavorite} from '../api-action';
-import {changeGenre} from '../actions';
-import {filterFilmsByGenre} from '../../utils/film-filter';
-
-interface AppReducerState {
-  selectedGenre: string;
-  error?: string;
-
-  isFilmsLoading: boolean;
-  films: FilmInfo[];
-  filteredFilms: FilmInfo[];
-
-  isPromoLoading: boolean;
-  promo?: FilmShortInfo;
-}
 
 const initialState: AppReducerState = {
   selectedGenre: DEFAULT_GENRE,
@@ -28,12 +16,15 @@ const initialState: AppReducerState = {
 };
 
 const appSlice = createSlice({
-  name: 'app',
+  name: ReducerName.App,
   initialState,
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(changeGenre, (state, action: PayloadAction<string>) => {
+      .addCase(setError, (state, action) => {
+        state.error = action.payload;
+      })
+      .addCase(changeGenre, (state, action) => {
         state.selectedGenre = action.payload;
         state.filteredFilms = filterFilmsByGenre(state.films, state.selectedGenre);
       })

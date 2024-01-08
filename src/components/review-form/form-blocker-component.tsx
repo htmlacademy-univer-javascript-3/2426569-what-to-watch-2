@@ -1,4 +1,4 @@
-import {FC, KeyboardEvent, memo, PropsWithChildren} from 'react';
+import {FC, Fragment, KeyboardEvent, memo, PropsWithChildren} from 'react';
 import './form-blocker.css';
 
 const WrapperBlockerComponent: FC<PropsWithChildren<{ isBlock: boolean }>> = ({isBlock, children}) => {
@@ -7,8 +7,10 @@ const WrapperBlockerComponent: FC<PropsWithChildren<{ isBlock: boolean }>> = ({i
   };
 
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
-    isBlock ? <div onKeyDown={handleKeyDown} className={'blocked-wrapper'}>{children}</div> : <>{children}</>
+    isBlock ? (
+      <div onKeyDown={handleKeyDown} data-testid="blocked-wrapper" className={'blocked-wrapper'}>{children}</div>
+      // eslint-disable-next-line react/jsx-no-useless-fragment
+    ) : <Fragment>{children}</Fragment>
   );
 };
 
