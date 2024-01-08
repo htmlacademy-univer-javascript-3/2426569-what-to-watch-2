@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 import {RoutesLinks} from '../../../routes/route-links';
-import {useCallback} from 'react';
+import {memo, useCallback} from 'react';
 import {SmallPreviewPlayer} from '../../small-preview-player/small-preview-player';
 import {FilmInfo} from '../../../types/film-info';
 
@@ -14,7 +14,7 @@ interface SmallFilmCardProps {
 const CARD_WIDTH = '280';
 const CARD_HEIGHT = '175';
 
-export function SmallFilmCard({film, isActive, onMouseEnter, onMouseLeave}: SmallFilmCardProps) {
+function SmallFilmCardComponent({film, isActive, onMouseEnter, onMouseLeave}: SmallFilmCardProps) {
   const {name, id} = film;
 
   const handleMouseEnter = useCallback(() => {
@@ -35,3 +35,5 @@ export function SmallFilmCard({film, isActive, onMouseEnter, onMouseLeave}: Smal
     </article>
   );
 }
+
+export const SmallFilmCard = memo(SmallFilmCardComponent);

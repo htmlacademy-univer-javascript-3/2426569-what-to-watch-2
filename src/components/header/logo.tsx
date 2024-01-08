@@ -1,7 +1,8 @@
+import {memo} from 'react';
 import {Link} from 'react-router-dom';
 import {RoutesLinks} from '../../routes/route-links';
 
-export function Logo() {
+function LogoComponent() {
   return (
     <div className="logo">
       <Link to={RoutesLinks.Main} className="logo__link">
@@ -12,3 +13,5 @@ export function Logo() {
     </div>
   );
 }
+
+export const Logo = memo(LogoComponent);

@@ -1,3 +1,4 @@
+import {memo} from 'react';
 import {Link} from 'react-router-dom';
 import {RoutesLinks} from '../../routes/route-links';
 
@@ -6,7 +7,7 @@ type BreadcrumbsProps = {
   title: string;
 }
 
-export function Breadcrumbs({id, title} : BreadcrumbsProps) {
+function BreadcrumbsComponent({id, title} : BreadcrumbsProps) {
   return (
     <nav className="breadcrumbs">
       <ul className="breadcrumbs__list">
@@ -22,3 +23,5 @@ export function Breadcrumbs({id, title} : BreadcrumbsProps) {
     </nav>
   );
 }
+
+export const Breadcrumbs = memo(BreadcrumbsComponent);

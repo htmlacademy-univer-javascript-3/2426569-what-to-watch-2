@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, memo} from 'react';
 import {Logo} from './logo';
 import {UserBlock} from './user-block';
 
@@ -10,7 +10,7 @@ type Props = {
   withoutUserBlock?: boolean;
 }
 
-export function Header({breadcrumbs, classNames, pageTitle, withoutUserBlock = false}: Props) {
+export function HeaderComponent({breadcrumbs, classNames, pageTitle, withoutUserBlock = false}: Props) {
   return (
     <Fragment>
       <h1 className="visually-hidden">WTW</h1>
@@ -23,3 +23,5 @@ export function Header({breadcrumbs, classNames, pageTitle, withoutUserBlock = f
     </Fragment>
   );
 }
+
+export const Header = memo(HeaderComponent);
