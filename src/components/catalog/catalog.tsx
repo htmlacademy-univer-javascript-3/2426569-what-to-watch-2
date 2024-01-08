@@ -1,6 +1,6 @@
 import {GenreList} from './genre-list/genre-list';
 import {FilmList} from './film-list/film-list';
-import {useEffect, useState} from 'react';
+import {memo, useCallback, useEffect, useState} from 'react';
 import {MAX_FILMS_IN_PAGE} from '../../consts';
 import {FilmInfo} from '../../types/film-info';
 import {SpinnerWrapper} from '../spinner/spinner-wrapper';
@@ -17,13 +17,15 @@ interface ShowMoreButtonProps {
   onClick: () => void;
 }
 
-const ShowMoreButton: React.FC<ShowMoreButtonProps> = ({onClick}: ShowMoreButtonProps) => (
+const ShowMoreButtonComponent: React.FC<ShowMoreButtonProps> = ({onClick}: ShowMoreButtonProps) => (
   <div className="catalog__more">
     <button className="catalog__button" type="button" onClick={onClick}>Show more</button>
   </div>
 );
 
-export const Catalog = ({withoutGenres = false, withoutShowMore = false, films, isLoading}: Props) => {
+const ShowMoreButton = memo(ShowMoreButtonComponent);
+
+export const CatalogComponent = ({withoutGenres = false, withoutShowMore = false, films, isLoading}: Props) => {
   const maxFilmCount = withoutShowMore ? films.length : MAX_FILMS_IN_PAGE;
   const [visibleFilms, setVisibleFilms] = useState(maxFilmCount);
 
@@ -31,9 +33,9 @@ export const Catalog = ({withoutGenres = false, withoutShowMore = false, films, 
     setVisibleFilms(withoutShowMore ? films.length : MAX_FILMS_IN_PAGE);
   }, [films, withoutShowMore]);
 
-  const handleShowMoreClick = () => {
+  const handleShowMoreClick = useCallback(() => {
     setVisibleFilms((prevVisibleFilms) => prevVisibleFilms + MAX_FILMS_IN_PAGE);
-  };
+  }, [setVisibleFilms]);
 
   return (
     <section className="catalog">
@@ -50,3 +52,5 @@ export const Catalog = ({withoutGenres = false, withoutShowMore = false, films, 
     </section>
   );
 };
+
+export const Catalog = memo(CatalogComponent);

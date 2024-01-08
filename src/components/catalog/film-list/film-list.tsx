@@ -1,5 +1,5 @@
 import {SmallFilmCard} from './small-film-card';
-import {useState} from 'react';
+import {memo, useState} from 'react';
 import {FilmInfo} from '../../../types/film-info';
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
   maxLength?: number;
 }
 
-export const FilmList = ({filmsData, maxLength = filmsData.length}: Props) => {
+const FilmListComponent = ({filmsData, maxLength = filmsData.length}: Props) => {
   const [activeFilm, setActiveFilm] = useState<string | null>(null);
   const handleCardHover = (filmId: string) => {
     setActiveFilm(filmId);
@@ -32,3 +32,5 @@ export const FilmList = ({filmsData, maxLength = filmsData.length}: Props) => {
     </div>
   );
 };
+
+export const FilmList = memo(FilmListComponent);

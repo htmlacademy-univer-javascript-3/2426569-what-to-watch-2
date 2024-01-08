@@ -1,6 +1,6 @@
-import {Fragment, useEffect} from 'react';
+import {Fragment, memo, useEffect} from 'react';
 import {Footer} from '../../components/footer/footer';
-import {Header} from '../../components/header/header';
+import {Header} from '../../components/header';
 import {useParams} from 'react-router-dom';
 import {RoutesLinks} from '../../routes/route-links';
 import {FilmCardLinkButton} from '../../components/film-card-buttons/film-card-link-button';
@@ -23,7 +23,7 @@ import {NotFoundPage} from '../not-found-page/not-found-page';
 import {selectAuthStatus, selectFavoriteCount} from '../../store/user-reducer/selectors';
 import {AuthStatus} from '../../types/auth-status';
 
-export const MoviePage = () => {
+export const MoviePageComponent = () => {
   const {id = ''} = useParams();
   const film = useSelector(selectFilm);
   const isFilmLoading = useSelector(selectIsFilmLoading);
@@ -119,3 +119,5 @@ export const MoviePage = () => {
     </Fragment>
   );
 };
+
+export const MoviePage = memo(MoviePageComponent);

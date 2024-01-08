@@ -1,3 +1,4 @@
+import {memo} from 'react';
 import {Header} from '../header';
 import {RoutesLinks} from '../../routes/route-links';
 import {ICONS} from '../icon/icons';
@@ -14,7 +15,7 @@ interface FilmCardProps {
   isLoading: boolean;
 }
 
-export function FilmCard({film, isLoading}: FilmCardProps) {
+function FilmCardComponent({film, isLoading}: FilmCardProps) {
   const favoriteCount = useSelector(selectFavoriteCount);
   return (
     <section className="film-card">
@@ -71,5 +72,7 @@ export function FilmCard({film, isLoading}: FilmCardProps) {
     </section>
   );
 }
+
+const FilmCard = memo(FilmCardComponent);
 
 export default FilmCard;

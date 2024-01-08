@@ -1,10 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
 
 import {useNavigate} from 'react-router-dom';
+import {FilmDetailsInfo} from '../../types/film-details-info';
+import {formatDuration} from '../../utils/time-format';
 import {Icon} from '../icon/icon';
 import {ICONS} from '../icon/icons';
-import {formatDuration} from '../../utils/time-format';
-import {FilmDetailsInfo} from '../../types/film-details-info';
 
 interface PlayerProps {
   film: FilmDetailsInfo;
@@ -57,6 +57,7 @@ function PlayerComponent({film: {posterImage, videoLink, name, runTime}}: Player
   return (
     <div className="player">
       <video
+        autoPlay
         ref={videoRef}
         src={videoLink}
         muted={!isMuted}
