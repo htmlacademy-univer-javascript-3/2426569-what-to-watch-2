@@ -1,7 +1,8 @@
+import {memo} from 'react';
 import {Link} from 'react-router-dom';
-import {RoutesLinks} from '../../routes/route-links.ts';
+import {RoutesLinks} from '../../routes/route-links';
 
-export function Footer() {
+function FooterComponent() {
   return (
     <footer className="page-footer">
       <div className="logo">
@@ -18,3 +19,5 @@ export function Footer() {
     </footer>
   );
 }
+
+export const Footer = memo(FooterComponent);

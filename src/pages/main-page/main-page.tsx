@@ -1,14 +1,15 @@
 import * as React from 'react';
-import {Footer} from '../../components/footer/footer.tsx';
-import {Catalog} from '../../components/catalog/catalog.tsx';
-import {FilmCard} from '../../components/film-card/film-card.tsx';
 import {useSelector} from 'react-redux';
+import {Catalog} from '../../components/catalog/catalog';
+import FilmCard from '../../components/film-card/film-card';
+import {Footer} from '../../components/footer/footer';
 import {
   selectFilteredByGenreFilms,
   selectIsFilmsLoading,
   selectIsPromoLoading,
   selectPromo
-} from '../../store/app-reducer/selectors.ts';
+} from '../../store/app-reducer/selectors';
+
 
 export const MainPage = () => {
   const promo = useSelector(selectPromo);

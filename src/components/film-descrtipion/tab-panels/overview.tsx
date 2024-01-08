@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
-import {convertFilmRating} from '../../../utils/raiting.ts';
-import {FilmDetailsInfo} from '../../../types/film-details-info.ts';
+import {convertFilmRating} from '../../../utils/raiting';
+import {FilmDetailsInfo} from '../../../types/film-details-info';
 
 interface OverviewProps {
   film: FilmDetailsInfo;

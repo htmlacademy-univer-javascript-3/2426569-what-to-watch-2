@@ -1,10 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
 
 import {useNavigate} from 'react-router-dom';
-import {Icon} from '../icon/icon.tsx';
-import {ICONS} from '../icon/icons.ts';
-import {formatDuration} from '../../utils/time-format.ts';
-import {FilmDetailsInfo} from '../../types/film-details-info.ts';
+import {Icon} from '../icon/icon';
+import {ICONS} from '../icon/icons';
+import {formatDuration} from '../../utils/time-format';
+import {FilmDetailsInfo} from '../../types/film-details-info';
 
 interface PlayerProps {
   film: FilmDetailsInfo;

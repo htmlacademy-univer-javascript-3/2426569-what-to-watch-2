@@ -1,20 +1,21 @@
 import {Header} from '../header';
-import {RoutesLinks} from '../../routes/route-links.ts';
-import {ICONS} from '../icon/icons.ts';
-import {FilmCardLinkButton} from '../film-card-buttons/film-card-link-button.tsx';
-import {Icon} from '../icon/icon.tsx';
-import {FilmShortInfo} from '../../types/film-details-info.ts';
-import {SpinnerWrapper} from '../spinner/spinner-wrapper.tsx';
+import {RoutesLinks} from '../../routes/route-links';
+import {ICONS} from '../icon/icons';
+import {FilmCardLinkButton} from '../film-card-buttons/film-card-link-button';
+import {Icon} from '../icon/icon';
+import {FilmShortInfo} from '../../types/film-details-info';
+import {SpinnerWrapper} from '../spinner/spinner-wrapper';
 import filmNotFoundGif from '../../../public/img/movie-not-found.gif';
+import {useSelector} from 'react-redux';
+import {selectFavoriteCount} from '../../store/user-reducer/selectors';
 
 interface FilmCardProps {
   film?: FilmShortInfo;
   isLoading: boolean;
 }
 
-const COUNT_FAVORITE = 9;
-
 export function FilmCard({film, isLoading}: FilmCardProps) {
+  const favoriteCount = useSelector(selectFavoriteCount);
   return (
     <section className="film-card">
       <Header classNames={'film-card__head'}/>
@@ -54,10 +55,10 @@ export function FilmCard({film, isLoading}: FilmCardProps) {
                     <FilmCardLinkButton
                       title={'My list'}
                       classNames={'btn--list'}
-                      icon={<Icon {...ICONS.IN_LIST}/>}
+                      icon={film.isFavorite ? <Icon {...ICONS.IN_LIST}/> : <Icon {...ICONS.ADD_LIST}/>}
                       toLink={RoutesLinks.MyList}
                     >
-                      <span className="film-card__count">{COUNT_FAVORITE}</span>
+                      <span className="film-card__count">{favoriteCount}</span>
                     </FilmCardLinkButton>
                   </div>
                 </div>
@@ -70,3 +71,5 @@ export function FilmCard({film, isLoading}: FilmCardProps) {
     </section>
   );
 }
+
+export default FilmCard;

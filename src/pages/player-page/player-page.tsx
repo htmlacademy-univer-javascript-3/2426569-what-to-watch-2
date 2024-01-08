@@ -1,17 +1,31 @@
-import {Navigate, useParams} from 'react-router-dom';
-import {RoutesLinks} from '../../routes/route-links.ts';
-import {Player} from '../../components/player/player.tsx';
+import {useParams} from 'react-router-dom';
+import {Player} from '../../components/player/player';
 import {useSelector} from 'react-redux';
-import {selectFilmById} from '../../store/app-reducer/selectors.ts';
+
+import {selectFilm, selectIsFilmLoading} from '../../store/film-reducer/selectors';
+import {useEffect} from 'react';
+import {fetchFilm} from '../../store/api-action';
+import {Spinner} from '../../components/spinner/spinner-wrapper';
+import {NotFoundPage} from '../not-found-page/not-found-page';
+import {useAppDispatch} from '../../hooks/store';
 
 export const PlayerPage = () => {
-  const {id} = useParams();
-  const film = useSelector(selectFilmById(id));
+  const {id = ''} = useParams();
+  const film = useSelector(selectFilm);
+  const isFilmLoading = useSelector(selectIsFilmLoading);
+  const dispatch = useAppDispatch();
 
-  if (!film) {
-    return (<Navigate to={RoutesLinks.NotFound}/>);
+  useEffect(() => {
+    dispatch(fetchFilm(id));
+  }, [dispatch, id]);
+
+  if (isFilmLoading) {
+    return <Spinner isFullPage/>;
   }
-  return (
-    <Player film={film}/>
-  );
+
+  if (!id || !film) {
+    return (<NotFoundPage/>);
+  }
+
+  return <Player film={film}/>;
 };

@@ -1,12 +1,9 @@
-import {FC, memo} from 'react';
+import {FC, memo, useMemo} from 'react';
 import {Review} from '../../../types/review';
+import {getDateString} from '../../../utils/time-format';
 
 const ReviewComponent: FC<Review> = ({comment, user, date, rating}) => {
-  const getDateString = (postDate: Date) =>
-    `${postDate.toLocaleString('eng', {
-      month: 'long',
-    })} ${postDate.getDate()}, ${postDate.getFullYear()}`;
-
+  const dateString = useMemo(() => getDateString(new Date(date)), [date]);
   return (
     <div className="review">
       <blockquote className="review__quote">
@@ -14,11 +11,8 @@ const ReviewComponent: FC<Review> = ({comment, user, date, rating}) => {
 
         <footer className="review__details">
           <cite className="review__author">{user}</cite>
-          <time
-            className="review__date"
-            dateTime={getDateString(new Date(date))}
-          >
-            {getDateString(new Date(date))}
+          <time className="review__date" dateTime={dateString}>
+            {dateString}
           </time>
         </footer>
       </blockquote>

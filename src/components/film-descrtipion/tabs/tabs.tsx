@@ -1,6 +1,6 @@
 import {FC, memo, useCallback} from 'react';
 import {Link} from 'react-router-dom';
-import {TabType, TabTypes} from '../../../types/tab-types.tsx';
+import {TabType, TabTypes} from '../../../types/tab-types';
 
 interface TabsProps {
   active: TabType;

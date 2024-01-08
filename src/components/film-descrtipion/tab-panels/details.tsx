@@ -1,6 +1,6 @@
 import {FC, memo, PropsWithChildren} from 'react';
 
-import {FilmDetailsInfo} from '../../../types/film-details-info.ts';
+import {FilmDetailsInfo} from '../../../types/film-details-info';
 interface FilmDetailsItemProps {
   name: string;
 }

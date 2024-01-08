@@ -1,1 +1,1 @@
-export {InputField} from './input-field.tsx';
+export {InputField} from './input-field';

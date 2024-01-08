@@ -1,17 +1,32 @@
-import {Breadcrumbs} from '../../components/breadcrumbs/breadcrumbs.tsx';
+import {Breadcrumbs} from '../../components/breadcrumbs/breadcrumbs';
 import {Header} from '../../components/header';
-import {Navigate, useParams} from 'react-router-dom';
-import {ReviewForm} from '../../components/review-form/review-form.tsx';
-import {RoutesLinks} from '../../routes/route-links.ts';
+import {useParams} from 'react-router-dom';
+import {ReviewForm} from '../../components/review-form/review-form';
 import {useSelector} from 'react-redux';
-import {selectFilmById} from '../../store/app-reducer/selectors.ts';
+
+import {selectFilm, selectIsFilmLoading} from '../../store/film-reducer/selectors';
+import {useAppDispatch} from '../../hooks/store';
+import {memo, useEffect} from 'react';
+import {fetchFilm} from '../../store/api-action';
+import {Spinner} from '../../components/spinner/spinner-wrapper';
+import {NotFoundPage} from '../not-found-page/not-found-page';
 
 const AddReviewPage = function () {
-  const {id} = useParams();
-  const film = useSelector(selectFilmById(id));
+  const {id = ''} = useParams();
+  const film = useSelector(selectFilm);
+  const isFilmLoading = useSelector(selectIsFilmLoading);
+  const dispatch = useAppDispatch();
 
-  if (!film) {
-    return (<Navigate to={RoutesLinks.NotFound}/>);
+  useEffect(() => {
+    dispatch(fetchFilm(id));
+  }, [dispatch, id]);
+
+  if (isFilmLoading) {
+    return <Spinner isFullPage/>;
+  }
+
+  if (!id || !film) {
+    return (<NotFoundPage/>);
   }
 
   const {name, backgroundImage, posterImage} = film;
@@ -30,10 +45,10 @@ const AddReviewPage = function () {
       </div>
 
       <div className="add-review">
-        <ReviewForm/>
+        <ReviewForm filmId={film.id}/>
       </div>
     </section>
   );
 };
 
-export default AddReviewPage;
+export default memo(AddReviewPage);

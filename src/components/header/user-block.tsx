@@ -1,10 +1,10 @@
 import {Link, useNavigate} from 'react-router-dom';
-import {RoutesLinks} from '../../routes/route-links.ts';
-import {AuthStatus} from '../../types/auth-status.ts';
+import {RoutesLinks} from '../../routes/route-links';
+import {AuthStatus} from '../../types/auth-status';
 import {useSelector} from 'react-redux';
-import {useAppDispatch} from '../../hooks/store.ts';
-import {logout} from '../../store/api-action.ts';
-import {selectAuthStatus, selectUserData} from '../../store/user-reducer/selectors.ts';
+import {useAppDispatch} from '../../hooks/store';
+import {logout} from '../../store/api-action';
+import {selectAuthStatus, selectUserData} from '../../store/user-reducer/selectors';
 
 export function UserBlock() {
   const isAuth = AuthStatus.Auth === useSelector(selectAuthStatus);

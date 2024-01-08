@@ -1,4 +1,4 @@
-import {Review} from '../types/review.ts';
+import {Review} from '../types/review';
 
 const REVIEW_LIST: Review[] = [
   {

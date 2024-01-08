@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
-import {Logo} from './logo.tsx';
-import {UserBlock} from './user-block.tsx';
+import {Logo} from './logo';
+import {UserBlock} from './user-block';
 
 
 type Props = {

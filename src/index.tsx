@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {App} from './app.tsx';
+import {App} from './app';
 import {Provider} from 'react-redux';
-import {store} from './store/store.ts';
-import {checkAuth, fetchFavoriteFilms, fetchFilms, fetchPromo} from './store/api-action.ts';
+import {store} from './store/store';
+import {checkAuth, fetchFavoriteFilms, fetchFilms, fetchPromo} from './store/api-action';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
