@@ -10,7 +10,7 @@ describe('FilmList Component', () => {
   test('renders film list component', () => {
     render(
       <MemoryRouter initialEntries={['/initial']}>
-        <FilmList filmsData={mockFilmsData}/>
+        <FilmList filmsList={mockFilmsData}/>
       </MemoryRouter>
     );
 
@@ -21,7 +21,7 @@ describe('FilmList Component', () => {
   test('handles film hover events', () => {
     render(
       <MemoryRouter initialEntries={['/initial']}>
-        <FilmList filmsData={mockFilmsData}/>
+        <FilmList filmsList={mockFilmsData}/>
       </MemoryRouter>
     );
 
@@ -41,7 +41,7 @@ describe('FilmList Component', () => {
   test('renders film list with empty array', () => {
     render(
       <MemoryRouter initialEntries={['/initial']}>
-        <FilmList filmsData={[]}/>
+        <FilmList filmsList={[]}/>
       </MemoryRouter>
     );
 
@@ -53,11 +53,10 @@ describe('FilmList Component', () => {
     const maxLength = 1;
     render(
       <MemoryRouter initialEntries={['/initial']}>
-        <FilmList filmsData={mockFilmsData} maxLength={maxLength}/>
+        <FilmList filmsList={mockFilmsData} maxLength={maxLength}/>
       </MemoryRouter>
     );
 
-    // Check if only one film card is rendered
     const filmCards = screen.getAllByTestId('small-film-card');
     expect(filmCards).toHaveLength(1);
   });

@@ -23,7 +23,7 @@ const MainPageComponent = () => {
       <FilmCard film={promo} isLoading={isPromoLoading}/>
 
       <div className="page-content">
-        <Catalog films={filteredFilms} isLoading={isFilmsLoading}/>
+        <Catalog filmsList={filteredFilms} isLoading={isFilmsLoading}/>
         <Footer/>
       </div>
     </React.Fragment>

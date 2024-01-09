@@ -5,7 +5,7 @@ import {ReducerName} from '../../types/reducer-name.ts';
 import {filterFilmsByGenre} from '../../utils/film-filter';
 import {changeGenre, setError} from '../actions';
 
-import {fetchFilms, fetchPromo, toggleFavorite} from '../api-action';
+import {addReview, fetchFilms, fetchPromo, login, logout, toggleFavorite} from '../api-action';
 
 const initialState: AppReducerState = {
   selectedGenre: DEFAULT_GENRE,
@@ -55,6 +55,22 @@ const appSlice = createSlice({
         if (state.promo && action.payload.id === state.promo.id) {
           state.promo = action.payload;
         }
+      })
+      .addCase(toggleFavorite.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(logout.rejected, (state, action) => {
+        state.error = action.error.message;
+      })
+      .addCase(addReview.fulfilled, (state, action) => {
+        state.error = undefined;
+        action.payload.backToFilm();
+      })
+      .addCase(addReview.rejected, (state, action) => {
+        state.error = action.error.message;
       });
   }
 });

@@ -2,7 +2,7 @@ import {DEFAULT_GENRE} from '../../consts.ts';
 import {filmsDetails, filmsList} from '../../mocs/film-info.ts';
 import {AppReducerState} from '../../types/app-reducer-state.ts';
 import {changeGenre, setError} from '../actions.ts';
-import {fetchFilms, fetchPromo} from '../api-action.ts';
+import {addReview, fetchFilms, fetchPromo, login, logout, toggleFavorite} from '../api-action.ts';
 import appReducer from './app-reducer.ts';
 
 const mockFilm = filmsDetails[0];
@@ -73,6 +73,47 @@ describe('app-reducer', () => {
     it('should set promo on fulfilled', () => {
       expect(appReducer(state, {type: fetchPromo.fulfilled.type, payload: mockFilm}).promo)
         .toEqual(mockFilm);
+    });
+  });
+
+  describe('toggleFavorite rejected test', () => {
+    it('should set error on rejected', () => {
+      expect(appReducer(state, {type: toggleFavorite.rejected.type, error: {message: 'Error message'}}).error)
+        .toEqual('Error message');
+    });
+  });
+
+  describe('login rejected test', () => {
+    it('should set error on rejected', () => {
+      expect(appReducer(state, {type: login.rejected.type, error: {message: 'Error message'}}).error)
+        .toEqual('Error message');
+    });
+  });
+
+  describe('logout rejected test', () => {
+    it('should set error on rejected', () => {
+      expect(appReducer(state, {type: logout.rejected.type, error: {message: 'Error message'}}).error)
+        .toEqual('Error message');
+    });
+  });
+
+  describe('addReview fulfilled test', () => {
+    it('should set error to undefined and call backToFilm on fulfilled', () => {
+      const backToFilmMock = vi.fn();
+      const action = {
+        type: addReview.fulfilled.type,
+        payload: {backToFilm: backToFilmMock},
+      };
+      const newState = appReducer(state, action);
+      expect(newState.error).toBeUndefined();
+      expect(backToFilmMock).toHaveBeenCalled();
+    });
+  });
+
+  describe('addReview rejected test', () => {
+    it('should set error on rejected', () => {
+      expect(appReducer(state, {type: addReview.rejected.type, error: {message: 'Error message'}}).error)
+        .toEqual('Error message');
     });
   });
 });

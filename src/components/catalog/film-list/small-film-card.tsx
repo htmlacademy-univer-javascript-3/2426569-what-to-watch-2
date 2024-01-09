@@ -29,10 +29,12 @@ function SmallFilmCardComponent({film, isActive, onMouseEnter, onMouseLeave}: Sm
       data-active={isActive}
       data-testid="small-film-card"
     >
-      <SmallPreviewPlayer {...film} width={CARD_WIDTH} height={CARD_HEIGHT}/>
-      <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={RoutesLinks.Film.replace(':id', id)}>{name}</Link>
-      </h3>
+      <Link className="small-film-card__link" to={RoutesLinks.Film.replace(':id', id)}>
+        <SmallPreviewPlayer {...film} width={CARD_WIDTH} height={CARD_HEIGHT}/>
+        <h3 className="small-film-card__title">
+          {name}
+        </h3>
+      </Link>
     </article>
   );
 }
