@@ -39,11 +39,10 @@ export function ReviewFormComponent({filmId}: ReviewFormProps) {
         comment: formData.comment,
         rating: Number(formData.rating),
         filmId: filmId,
+        backToFilm: () => navigate(RoutesLinks.Film.replace(':id', filmId))
       };
       setIsBlocked(true);
-      dispatch(addReview(addRequest)).then(() => {
-        navigate(RoutesLinks.Film.replace(':id', filmId));
-      }).finally(() => {
+      dispatch(addReview(addRequest)).finally(() => {
         setIsBlocked(false);
       });
     },

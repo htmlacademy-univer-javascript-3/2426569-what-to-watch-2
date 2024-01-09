@@ -6,6 +6,8 @@ import {FilmDetailsInfo, FilmShortInfo} from '../types/film-details-info';
 import {Review} from '../types/review';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
+import AddReviewResponse from '../types/add-review-response';
+import {AddReviewData} from '../types/add-review-data';
 
 interface ApiState {
   dispatch: AppDispatch;
@@ -94,16 +96,16 @@ export const fetchSimilar = createAsyncThunk<
 });
 
 export const addReview = createAsyncThunk<
-  Review,
-  { comment: string; rating: number; filmId: string },
+  AddReviewResponse,
+  AddReviewData,
   ApiState
 >(
   '/comments/addReview',
-  async ({ comment, rating, filmId }, { extra: api }) =>
-    await api.post(`/comments/${filmId}`, {
-      comment,
-      rating,
-    })
+  async (params, {extra: api}) => {
+    const {comment, rating, filmId, backToFilm} = params;
+    const {data} = await api.post<Review>(`/comments/${filmId}`, {comment, rating});
+    return {data, backToFilm};
+  }
 );
 
 export const toggleFavorite = createAsyncThunk<
@@ -112,12 +114,12 @@ export const toggleFavorite = createAsyncThunk<
   ApiState
 >(
   'user/toggleFavorite',
-  async ({ filmId, status }, { extra: api }) => {
+  async ({filmId, status}, {extra: api}) => {
     let requestStatus = 0;
     if (status) {
       requestStatus = 1;
     }
-    const { data } = await api.post<FilmDetailsInfo>(
+    const {data} = await api.post<FilmDetailsInfo>(
       `/favorite/${filmId}/${requestStatus}`,
       {
         filmId,

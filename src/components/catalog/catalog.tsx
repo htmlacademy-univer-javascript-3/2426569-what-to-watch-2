@@ -9,7 +9,7 @@ import {SpinnerWrapper} from '../spinner/spinner-wrapper';
 interface Props {
   withoutGenres?: boolean;
   withoutShowMore?: boolean;
-  films: FilmInfo[];
+  filmsList: FilmInfo[];
   isLoading: boolean;
 }
 
@@ -25,13 +25,13 @@ const ShowMoreButtonComponent: React.FC<ShowMoreButtonProps> = ({onClick}: ShowM
 
 const ShowMoreButton = memo(ShowMoreButtonComponent);
 
-export const CatalogComponent = ({withoutGenres = false, withoutShowMore = false, films, isLoading}: Props) => {
-  const maxFilmCount = withoutShowMore ? films.length : MAX_FILMS_IN_PAGE;
+export const CatalogComponent = ({withoutGenres = false, withoutShowMore = false, filmsList, isLoading}: Props) => {
+  const maxFilmCount = withoutShowMore ? filmsList.length : MAX_FILMS_IN_PAGE;
   const [visibleFilms, setVisibleFilms] = useState(maxFilmCount);
 
   useEffect(() => {
-    setVisibleFilms(withoutShowMore ? films.length : MAX_FILMS_IN_PAGE);
-  }, [films, withoutShowMore]);
+    setVisibleFilms(withoutShowMore ? filmsList.length : MAX_FILMS_IN_PAGE);
+  }, [filmsList, withoutShowMore]);
 
   const handleShowMoreClick = useCallback(() => {
     setVisibleFilms((prevVisibleFilms) => prevVisibleFilms + MAX_FILMS_IN_PAGE);
@@ -43,9 +43,9 @@ export const CatalogComponent = ({withoutGenres = false, withoutShowMore = false
       <SpinnerWrapper isLoading={isLoading}>
         {!withoutGenres ? <GenreList/> : null}
 
-        <FilmList filmsData={films} maxLength={visibleFilms}/>
+        <FilmList filmsList={filmsList} maxLength={visibleFilms}/>
 
-        {!withoutShowMore && visibleFilms < (films?.length ?? 0) ? (
+        {!withoutShowMore && visibleFilms < (filmsList?.length ?? 0) ? (
           <ShowMoreButton onClick={handleShowMoreClick} />
         ) : null}
       </SpinnerWrapper>

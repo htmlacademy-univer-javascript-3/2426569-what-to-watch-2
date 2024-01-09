@@ -28,6 +28,6 @@ describe('Logo', () => {
     const logoLink = screen.getByTestId('logo-link');
     fireEvent.click(logoLink);
 
-    expect(window.location.pathname).toBe(RoutesLinks.Main); // Adjust the path accordingly
+    expect(window.location.pathname).toBe(RoutesLinks.Main);
   });
 });

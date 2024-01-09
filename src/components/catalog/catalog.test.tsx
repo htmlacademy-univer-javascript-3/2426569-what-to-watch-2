@@ -20,7 +20,7 @@ Array.from({length: MAX_FILMS_IN_PAGE * 2}).map((_, i) => {
     name: `Film ${i}`,
     previewImage: `https://example.com/film${i}.jpg`,
     previewVideoLink: `https://example.com/film${i}.mp4`,
-    genre: 'Genre', // Замените это на конкретный жанр, если нужно
+    genre: 'Genre',
   });
 });
 
@@ -38,7 +38,7 @@ describe('CatalogComponent', () => {
     render(
       <MemoryRouter>
         <Provider store={store}>
-          <Catalog withoutGenres withoutShowMore films={mockFilms} isLoading={false}/>
+          <Catalog withoutGenres withoutShowMore filmsList={mockFilms} isLoading={false}/>
         </Provider>
       </MemoryRouter>
     );
@@ -60,7 +60,7 @@ describe('CatalogComponent', () => {
     render(
       <MemoryRouter>
         <Provider store={store}>
-          <Catalog films={mockFilms} isLoading={false}/>
+          <Catalog filmsList={mockFilms} isLoading={false}/>
         </Provider>
       </MemoryRouter>
     );
@@ -85,20 +85,20 @@ describe('CatalogComponent', () => {
     render(
       <MemoryRouter>
         <Provider store={store}>
-          <Catalog films={mockFilms} isLoading={false}/>
+          <Catalog filmsList={mockFilms} isLoading={false}/>
         </Provider>
       </MemoryRouter>
     );
 
     const initialFilmList = screen.getAllByText(/Film \d/);
-    expect(initialFilmList.length).toBe(MAX_FILMS_IN_PAGE); // Assuming `MAX_FILMS_IN_PAGE` is 2
+    expect(initialFilmList.length).toBe(MAX_FILMS_IN_PAGE);
 
     const showMoreButton = screen.getByText('Show more');
     fireEvent.click(showMoreButton);
 
     await waitFor(() => {
       const updatedFilmList = screen.getAllByText(/Film \d/);
-      expect(updatedFilmList.length).toBe(MAX_FILMS_IN_PAGE + MAX_FILMS_IN_PAGE); // Assuming `MAX_FILMS_IN_PAGE` is 2
+      expect(updatedFilmList.length).toBe(MAX_FILMS_IN_PAGE + MAX_FILMS_IN_PAGE);
     });
   });
 });

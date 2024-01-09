@@ -40,7 +40,7 @@ export const MyListPage = () => {
         }
       />
 
-      <Catalog films={favoriteFilms} withoutGenres withoutShowMore isLoading={isLoading}/>
+      <Catalog filmsList={favoriteFilms} withoutGenres withoutShowMore isLoading={isLoading}/>
       <Footer/>
     </div>
   );

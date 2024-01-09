@@ -90,7 +90,7 @@ export const MoviePageComponent = () => {
               <section className="catalog catalog--like-this">
                 <h2 className="catalog__title">More like this</h2>
 
-                <FilmList filmsData={similarFilms} maxLength={MAX_SIMILAR_FILMS_IN_PAGE}/>
+                <FilmList filmsList={similarFilms} maxLength={MAX_SIMILAR_FILMS_IN_PAGE}/>
               </section>
             )
           }

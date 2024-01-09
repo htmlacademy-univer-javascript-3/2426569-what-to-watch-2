@@ -3,6 +3,7 @@ import '@testing-library/jest-dom/extend-expect';
 import {MemoryRouter} from 'react-router-dom';
 import {filmsList} from '../../../mocs/film-info.ts';
 import {SmallFilmCard} from './small-film-card.tsx';
+import {RoutesLinks} from '../../../routes/route-links';
 
 const mockFilm = filmsList[0];
 
@@ -18,7 +19,7 @@ describe('SmallFilmCard Component', () => {
     );
 
     const filmCard = screen.getByTestId('small-film-card');
-    const linkElement = screen.getByRole('link', {name: mockFilm.name});
+    const linkElement = screen.getByRole('link');
 
     expect(filmCard).toBeInTheDocument();
     expect(linkElement).toBeInTheDocument();
@@ -47,7 +48,8 @@ describe('SmallFilmCard Component', () => {
       </MemoryRouter>
     );
 
-    const linkElement = screen.getByRole('link', {name: mockFilm.name});
+    const linkElement = screen.getByRole('link');
+    expect(linkElement).toHaveAttribute('href', RoutesLinks.Film.replace(':id', mockFilm.id));
 
     fireEvent.click(linkElement);
   });
