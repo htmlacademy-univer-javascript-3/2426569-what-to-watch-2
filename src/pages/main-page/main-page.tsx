@@ -1,3 +1,4 @@
+import {memo} from 'react';
 import * as React from 'react';
 import {useSelector} from 'react-redux';
 import {Catalog} from '../../components/catalog/catalog';
@@ -11,7 +12,7 @@ import {
 } from '../../store/app-reducer/selectors';
 
 
-export const MainPage = () => {
+const MainPageComponent = () => {
   const promo = useSelector(selectPromo);
   const filteredFilms = useSelector(selectFilteredByGenreFilms);
   const isFilmsLoading = useSelector(selectIsFilmsLoading);
@@ -28,3 +29,6 @@ export const MainPage = () => {
     </React.Fragment>
   );
 };
+
+const MainPage = memo(MainPageComponent);
+export default MainPage;

@@ -37,7 +37,7 @@ export const SignIn: FC = () => {
       return setError('Please enter a valid email address');
     }
 
-    if (!/[a-z]/i.test(password) || !/[0-9]/.test(password)) {
+    if (!/[\w]/i.test(password) || !/[\d]/.test(password)) {
       return setError('Passwords must contain: a minimum of 1 letter and a minimum of 1 numeric character');
     }
 
@@ -82,7 +82,7 @@ export const SignIn: FC = () => {
             />
           </div>
           <div className="sign-in__submit">
-            <button className="sign-in__btn" type="submit">
+            <button className="sign-in__btn" type="submit" data-testid={'sign-in-btn'}>
               Sign in
             </button>
           </div>

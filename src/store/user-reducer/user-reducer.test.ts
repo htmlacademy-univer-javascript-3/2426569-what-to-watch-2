@@ -1,6 +1,6 @@
 import {filmsList} from '../../mocs/film-info.ts';
+import userData from '../../mocs/user-data.ts';
 import {AuthStatus} from '../../types/auth-status';
-import {UserData} from '../../types/user-data.ts';
 import {UserReducerState} from '../../types/user-reducer-state';
 import {setAuthStatus} from '../actions';
 import {checkAuth, fetchFavoriteFilms, login, logout, toggleFavorite} from '../api-action';
@@ -8,12 +8,7 @@ import userReducer from './user-reducer';
 
 
 const mockFilms = filmsList;
-const mockUser: UserData = {
-  avatarUrl: 'https://example.com/avatar.jpg',
-  email: 'user@example.com',
-  name: 'John Doe',
-  token: 'mockToken',
-};
+const mockUser = userData;
 
 describe('user-reducer', () => {
   let state: UserReducerState;
@@ -24,6 +19,7 @@ describe('user-reducer', () => {
       authStatus: AuthStatus.NoAuth,
       favoriteFilms: [],
       favoriteCount: 0,
+      isFavoriteFilmsLoading: false,
     };
   });
 
@@ -34,6 +30,7 @@ describe('user-reducer', () => {
         authStatus: AuthStatus.NoAuth,
         favoriteFilms: [],
         favoriteCount: 0,
+        isFavoriteFilmsLoading: false,
       });
   });
 
@@ -78,10 +75,17 @@ describe('user-reducer', () => {
 
   describe('fetchFavoriteFilms test', () => {
     it('should handle fulfilled', () => {
+      const newState = userReducer(state, {type: fetchFavoriteFilms.pending.type});
+
+      expect(newState.isFavoriteFilmsLoading).toEqual(true);
+    });
+
+    it('should handle fulfilled', () => {
       const newState = userReducer(state, {type: fetchFavoriteFilms.fulfilled.type, payload: mockFilms});
 
       expect(newState.favoriteFilms).toEqual(mockFilms);
       expect(newState.favoriteCount).toEqual(mockFilms.length);
+      expect(newState.isFavoriteFilmsLoading).toEqual(false);
     });
 
     it('should handle rejected', () => {
@@ -89,6 +93,7 @@ describe('user-reducer', () => {
 
       expect(newState.favoriteFilms).toEqual([]);
       expect(newState.favoriteCount).toEqual(0);
+      expect(newState.isFavoriteFilmsLoading).toEqual(false);
     });
   });
 
@@ -98,6 +103,7 @@ describe('user-reducer', () => {
       authStatus: AuthStatus.Auth,
       favoriteFilms: mockFilms.slice(0, 2),
       favoriteCount: 2,
+      isFavoriteFilmsLoading: false,
     };
 
     it('should handle fulfilled  favoriteOn', () => {

@@ -1,6 +1,6 @@
 import {Route, Routes} from 'react-router-dom';
 import AddReviewPage from '../pages/add-review/add-review.tsx';
-import {MainPage} from '../pages/main-page/main-page.tsx';
+import MainPage from '../pages/main-page/main-page.tsx';
 import {MoviePage} from '../pages/movie-page/movie-page.tsx';
 import {MyListPage} from '../pages/my-list-page/my-list-page.tsx';
 import {NotFoundPage} from '../pages/not-found-page/not-found-page.tsx';

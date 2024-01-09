@@ -1,9 +1,8 @@
 import {useEffect, useRef, useState} from 'react';
+import {FILM_PREVIEW_MS} from '../../consts.ts';
 import {FilmInfo} from '../../types/film-info';
 
 type Props = FilmInfo & { isMuted?: boolean; width: string; height: string };
-
-const FILM_PREVIEW_MS = 1000;
 
 export const SmallPreviewPlayer: React.FC<Props> = ({
   previewVideoLink,
@@ -48,6 +47,7 @@ export const SmallPreviewPlayer: React.FC<Props> = ({
 
   return (
     <div
+      data-testid={'small-preview-container'}
       className="small-film-card__image"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

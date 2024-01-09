@@ -11,6 +11,7 @@ const initialState: UserReducerState = {
   authStatus: AuthStatus.NoAuth,
   favoriteFilms: [],
   favoriteCount: 0,
+  isFavoriteFilmsLoading: false,
 };
 
 const userSlice = createSlice({
@@ -41,13 +42,18 @@ const userSlice = createSlice({
         state.userData = action.payload;
         state.authStatus = AuthStatus.Auth;
       })
+      .addCase(fetchFavoriteFilms.pending, (state) => {
+        state.isFavoriteFilmsLoading = true;
+      })
       .addCase(fetchFavoriteFilms.fulfilled, (state, action) => {
         state.favoriteFilms = action.payload;
         state.favoriteCount = action.payload.length;
+        state.isFavoriteFilmsLoading = false;
       })
       .addCase(fetchFavoriteFilms.rejected, (state) => {
         state.favoriteFilms = [];
         state.favoriteCount = 0;
+        state.isFavoriteFilmsLoading = false;
       })
       .addCase(toggleFavorite.fulfilled, (state, action) => {
         state.favoriteCount += action.payload.isFavorite ? 1 : -1;

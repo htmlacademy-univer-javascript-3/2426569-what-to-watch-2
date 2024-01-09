@@ -1,3 +1,4 @@
+import {useCallback} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {RoutesLinks} from '../../routes/route-links';
 import {AuthStatus} from '../../types/auth-status';
@@ -12,10 +13,10 @@ export function UserBlock() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleLogoutClick = () => {
+  const handleLogoutClick = useCallback(() => {
     dispatch(logout());
     navigate(RoutesLinks.Main);
-  };
+  }, [dispatch, navigate]);
 
   return (
     <ul className="user-block">
@@ -34,7 +35,7 @@ export function UserBlock() {
       <li className="user-block__item">
         {
           isAuth ? (
-            <Link to={RoutesLinks.Main} onClick={handleLogoutClick} className="user-block__link">Sign out</Link>
+            <Link to={''} onClick={handleLogoutClick} className="user-block__link">Sign out</Link>
           ) : (
             <Link to={RoutesLinks.SingIn} className="user-block__link">Sign in</Link>
           )

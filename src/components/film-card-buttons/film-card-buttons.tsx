@@ -45,7 +45,7 @@ function FilmCardButtonsComponent({withReview = false, isFavorite, filmId}: Film
         icon={isFavorite ? <Icon {...ICONS.IN_LIST}/> : <Icon {...ICONS.ADD_LIST}/>}
         onClick={handleToggleFavoriteClick}
       >
-        <span className="film-card__count">{favoriteCount}</span>
+        <span className="film-card__count" data-testid={'favorite-count'}>{favoriteCount}</span>
       </FilmCardButton>
 
       {withReview && isAuth && (
