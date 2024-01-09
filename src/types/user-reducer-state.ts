@@ -6,5 +6,6 @@ export interface UserReducerState {
   userData: UserData | null;
   authStatus: AuthStatus;
   favoriteFilms: FilmInfo[];
+  isFavoriteFilmsLoading: boolean;
   favoriteCount: number;
 }

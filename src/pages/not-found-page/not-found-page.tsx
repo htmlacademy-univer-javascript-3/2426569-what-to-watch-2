@@ -1,4 +1,6 @@
 import './404.css';
+import {Link} from 'react-router-dom';
+import {RoutesLinks} from '../../routes/route-links.ts';
 
 export const NotFoundPage = () => (
   <div className="not_found_page">
@@ -11,7 +13,7 @@ export const NotFoundPage = () => (
     <div className="info">
       <h2>Страница не найдена</h2>
       <p>Мы старались-старались, но ничего не нашли, может проблема в вас).
-      </p><a href="/#" rel="noreferrer noopener">Домой</a>
+      </p><Link to={RoutesLinks.Main} rel="noreferrer noopener">Домой</Link>
     </div>
   </div>
 );

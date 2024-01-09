@@ -75,7 +75,7 @@ function PlayerComponent({film: {posterImage, videoLink, name, runTime}}: Player
         </div>
 
         <div className="player__controls-row">
-          <button type="button" className="player__play" onClick={handlePlayClick}>
+          <button type="button" className="player__play" data-testid={'player-play-btn'} onClick={handlePlayClick}>
             {
               !isPlaying ? <><Icon {...ICONS.PLAY_START}/><span>Play</span></>
                 : <><Icon {...ICONS.PAUSE}/><span>Pause</span></>

@@ -7,6 +7,7 @@ import {FilmDescription} from '../../components/film-descrtipion/film-descriptio
 import {Footer} from '../../components/footer/footer';
 import {Header} from '../../components/header';
 import {Spinner, SpinnerWrapper} from '../../components/spinner/spinner-wrapper';
+import {MAX_SIMILAR_FILMS_IN_PAGE} from '../../consts.ts';
 import {useAppDispatch} from '../../hooks/store';
 import {fetchFilm, fetchReviews, fetchSimilar} from '../../store/api-action';
 import {
@@ -89,7 +90,7 @@ export const MoviePageComponent = () => {
               <section className="catalog catalog--like-this">
                 <h2 className="catalog__title">More like this</h2>
 
-                <FilmList filmsData={similarFilms} maxLength={4}/>
+                <FilmList filmsData={similarFilms} maxLength={MAX_SIMILAR_FILMS_IN_PAGE}/>
               </section>
             )
           }

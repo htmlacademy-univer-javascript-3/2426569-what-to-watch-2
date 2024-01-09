@@ -38,14 +38,14 @@ export const CatalogComponent = ({withoutGenres = false, withoutShowMore = false
   }, [setVisibleFilms]);
 
   return (
-    <section className="catalog">
+    <section className="catalog" data-testid="catalog">
       <h2 className="catalog__title visually-hidden">Catalog</h2>
       <SpinnerWrapper isLoading={isLoading}>
         {!withoutGenres ? <GenreList/> : null}
 
         <FilmList filmsData={films} maxLength={visibleFilms}/>
 
-        {!withoutShowMore && visibleFilms < films.length ? (
+        {!withoutShowMore && visibleFilms < (films?.length ?? 0) ? (
           <ShowMoreButton onClick={handleShowMoreClick} />
         ) : null}
       </SpinnerWrapper>
